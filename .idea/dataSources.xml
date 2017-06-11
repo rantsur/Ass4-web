@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="ShopDB@mordb.database.windows.net" uuid="362b9d43-7fa3-49fd-8cbb-2cef36e60bc4">
+      <driver-ref>sqlserver.ms</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.microsoft.sqlserver.jdbc.SQLServerDriver</jdbc-driver>
+      <jdbc-url>jdbc:sqlserver://mordb.database.windows.net;databaseName=ShopDB</jdbc-url>
+    </data-source>
+  </component>
+</project>
