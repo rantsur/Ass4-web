@@ -12,7 +12,7 @@
     </database>
     <schema id="4" parent="2" name="dbo">
       <ObjectId>1</ObjectId>
-      <IntrospectionTimestamp>2017-06-06.14:00:32.510</IntrospectionTimestamp>
+      <IntrospectionTimestamp>2017-06-24.08:57:10.130</IntrospectionTimestamp>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -67,64 +67,59 @@
       <CreatedTimestamp>2017-06-02.15:46:11.030</CreatedTimestamp>
       <ModifiedTimestamp>2017-06-06.13:57:17.670</ModifiedTimestamp>
     </table>
-    <table id="20" parent="4" name="Countries">
-      <ObjectId>1061578820</ObjectId>
-      <CreatedTimestamp>2017-06-02.16:15:25.293</CreatedTimestamp>
-      <ModifiedTimestamp>2017-06-02.16:15:25.460</ModifiedTimestamp>
-    </table>
-    <table id="21" parent="4" name="Orders">
+    <table id="20" parent="4" name="Orders">
       <ObjectId>1285579618</ObjectId>
       <CreatedTimestamp>2017-06-03.09:39:00.660</CreatedTimestamp>
       <ModifiedTimestamp>2017-06-04.07:59:09.280</ModifiedTimestamp>
     </table>
-    <table id="22" parent="4" name="PrefencesForUser">
+    <table id="21" parent="4" name="PrefencesForUser">
       <ObjectId>1317579732</ObjectId>
       <CreatedTimestamp>2017-06-04.10:11:06.150</CreatedTimestamp>
       <ModifiedTimestamp>2017-06-04.10:11:25.347</ModifiedTimestamp>
     </table>
-    <table id="23" parent="4" name="Products">
+    <table id="22" parent="4" name="Products">
       <ObjectId>1237579447</ObjectId>
       <CreatedTimestamp>2017-06-02.17:19:11.420</CreatedTimestamp>
-      <ModifiedTimestamp>2017-06-04.08:25:25.407</ModifiedTimestamp>
+      <ModifiedTimestamp>2017-06-24.08:57:00.053</ModifiedTimestamp>
     </table>
-    <table id="24" parent="4" name="ProductsInOrder">
+    <table id="23" parent="4" name="ProductsInOrder">
       <ObjectId>1125579048</ObjectId>
       <CreatedTimestamp>2017-06-02.16:33:01.023</CreatedTimestamp>
       <ModifiedTimestamp>2017-06-02.16:33:01.193</ModifiedTimestamp>
     </table>
-    <table id="25" parent="4" name="Questions">
+    <table id="24" parent="4" name="Questions">
       <ObjectId>1221579390</ObjectId>
       <CreatedTimestamp>2017-06-02.17:06:20.970</CreatedTimestamp>
       <ModifiedTimestamp>2017-06-02.17:06:21.050</ModifiedTimestamp>
     </table>
-    <table id="26" parent="4" name="QuestionsForUser">
+    <table id="25" parent="4" name="QuestionsForUser">
       <ObjectId>1189579276</ObjectId>
       <CreatedTimestamp>2017-06-02.16:37:10.717</CreatedTimestamp>
       <ModifiedTimestamp>2017-06-02.16:37:10.900</ModifiedTimestamp>
     </table>
-    <table id="27" parent="4" name="Stock">
+    <table id="26" parent="4" name="Stock">
       <ObjectId>1253579504</ObjectId>
       <CreatedTimestamp>2017-06-02.17:41:32.847</CreatedTimestamp>
       <ModifiedTimestamp>2017-06-02.17:41:32.933</ModifiedTimestamp>
     </table>
-    <column id="28" parent="17" name="BrandID">
+    <column id="27" parent="17" name="BrandID">
       <Position>1</Position>
       <DataType>int|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="29" parent="17" name="BrandName">
+    <column id="28" parent="17" name="BrandName">
       <Position>2</Position>
       <DataType>nvarchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="30" parent="17" name="PK_Brands">
+    <index id="29" parent="17" name="PK_Brands">
       <Position>1</Position>
       <ColNames>BrandID</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="31" parent="17" name="PK_Brands">
+    <key id="30" parent="17" name="PK_Brands">
       <ObjectId>1013578649</ObjectId>
       <CreatedTimestamp>2017-06-02.16:09:41.010</CreatedTimestamp>
       <ModifiedTimestamp>2017-06-02.16:09:41.010</ModifiedTimestamp>
@@ -132,23 +127,23 @@
       <UnderlyingIndexName>PK_Brands</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="32" parent="18" name="CategoryID">
+    <column id="31" parent="18" name="CategoryID">
       <Position>1</Position>
       <DataType>int|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="33" parent="18" name="CategoryName">
+    <column id="32" parent="18" name="CategoryName">
       <Position>2</Position>
       <DataType>nvarchar(50)|0</DataType>
     </column>
-    <index id="34" parent="18" name="PK_Categories">
+    <index id="33" parent="18" name="PK_Categories">
       <Position>1</Position>
       <ColNames>CategoryID</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="35" parent="18" name="PK_Categories">
+    <key id="34" parent="18" name="PK_Categories">
       <ObjectId>981578535</ObjectId>
       <CreatedTimestamp>2017-06-02.16:08:27.210</CreatedTimestamp>
       <ModifiedTimestamp>2017-06-02.16:08:27.210</ModifiedTimestamp>
@@ -156,74 +151,74 @@
       <UnderlyingIndexName>PK_Categories</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="36" parent="19" name="UserName">
+    <column id="35" parent="19" name="UserName">
       <Position>1</Position>
       <DataType>nvarchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="37" parent="19" name="Password">
+    <column id="36" parent="19" name="Password">
       <Position>2</Position>
       <DataType>nchar(10)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="38" parent="19" name="FirstName">
+    <column id="37" parent="19" name="FirstName">
       <Position>3</Position>
       <DataType>nvarchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="39" parent="19" name="LastName">
+    <column id="38" parent="19" name="LastName">
       <Position>4</Position>
       <DataType>nvarchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="40" parent="19" name="Address">
+    <column id="39" parent="19" name="Address">
       <Position>5</Position>
       <DataType>nvarchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="41" parent="19" name="City">
+    <column id="40" parent="19" name="City">
       <Position>6</Position>
       <DataType>nvarchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="42" parent="19" name="Country">
+    <column id="41" parent="19" name="Country">
       <Position>7</Position>
       <DataType>nvarchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="43" parent="19" name="Phone">
+    <column id="42" parent="19" name="Phone">
       <Position>8</Position>
       <DataType>nvarchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="44" parent="19" name="Cellular">
+    <column id="43" parent="19" name="Cellular">
       <Position>9</Position>
       <DataType>nvarchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="45" parent="19" name="Mail">
+    <column id="44" parent="19" name="Mail">
       <Position>10</Position>
       <DataType>nvarchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="46" parent="19" name="CreditCardNumber">
+    <column id="45" parent="19" name="CreditCardNumber">
       <Position>11</Position>
       <DataType>nvarchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="47" parent="19" name="isAdmin">
+    <column id="46" parent="19" name="isAdmin">
       <Position>12</Position>
       <DataType>int|0</DataType>
       <NotNull>1</NotNull>
       <DefaultExpression>0</DefaultExpression>
     </column>
-    <index id="48" parent="19" name="PK_Clients">
+    <index id="47" parent="19" name="PK_Clients">
       <Position>1</Position>
       <ColNames>UserName</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="49" parent="19" name="PK_Clients">
+    <key id="48" parent="19" name="PK_Clients">
       <ObjectId>917578307</ObjectId>
       <CreatedTimestamp>2017-06-02.15:46:11.273</CreatedTimestamp>
       <ModifiedTimestamp>2017-06-02.15:46:11.273</ModifiedTimestamp>
@@ -231,68 +226,44 @@
       <UnderlyingIndexName>PK_Clients</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="50" parent="20" name="CountryID">
-      <Position>1</Position>
-      <DataType>int|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="51" parent="20" name="CountryName">
-      <Position>2</Position>
-      <DataType>nvarchar(50)|0</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <index id="52" parent="20" name="PK_Countries">
-      <Position>1</Position>
-      <ColNames>CountryID</ColNames>
-      <Clustering>1</Clustering>
-      <Unique>1</Unique>
-    </index>
-    <key id="53" parent="20" name="PK_Countries">
-      <ObjectId>1077578877</ObjectId>
-      <CreatedTimestamp>2017-06-02.16:15:25.380</CreatedTimestamp>
-      <ModifiedTimestamp>2017-06-02.16:15:25.380</ModifiedTimestamp>
-      <ColNames>CountryID</ColNames>
-      <UnderlyingIndexName>PK_Countries</UnderlyingIndexName>
-      <Primary>1</Primary>
-    </key>
-    <column id="54" parent="21" name="OrderID">
+    <column id="49" parent="20" name="OrderID">
       <Position>1</Position>
       <DataType>int|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="55" parent="21" name="UserName">
+    <column id="50" parent="20" name="UserName">
       <Position>2</Position>
       <DataType>nvarchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="56" parent="21" name="OrderDate">
+    <column id="51" parent="20" name="OrderDate">
       <Position>3</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="57" parent="21" name="ShipmentDate">
+    <column id="52" parent="20" name="ShipmentDate">
       <Position>4</Position>
       <DataType>date|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="58" parent="21" name="Currency">
+    <column id="53" parent="20" name="Currency">
       <Position>5</Position>
       <DataType>nvarchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="59" parent="21" name="TotalAmount">
+    <column id="54" parent="20" name="TotalAmount">
       <Position>6</Position>
       <DataType>money|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="60" parent="21" name="PK_Orders">
+    <index id="55" parent="20" name="PK_Orders">
       <Position>1</Position>
       <ColNames>OrderID</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="61" parent="21" name="PK_Orders">
+    <key id="56" parent="20" name="PK_Orders">
       <ObjectId>1301579675</ObjectId>
       <CreatedTimestamp>2017-06-03.09:39:00.750</CreatedTimestamp>
       <ModifiedTimestamp>2017-06-03.09:39:00.750</ModifiedTimestamp>
@@ -300,24 +271,24 @@
       <UnderlyingIndexName>PK_Orders</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="62" parent="22" name="UserName">
+    <column id="57" parent="21" name="UserName">
       <Position>1</Position>
       <DataType>nvarchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="63" parent="22" name="CategoryID">
+    <column id="58" parent="21" name="CategoryID">
       <Position>2</Position>
       <DataType>int|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="64" parent="22" name="PK_PrefencesForUser">
+    <index id="59" parent="21" name="PK_PrefencesForUser">
       <Position>1</Position>
       <ColNames>UserName
 CategoryID</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="65" parent="22" name="PK_PrefencesForUser">
+    <key id="60" parent="21" name="PK_PrefencesForUser">
       <ObjectId>1333579789</ObjectId>
       <CreatedTimestamp>2017-06-04.10:11:25.260</CreatedTimestamp>
       <ModifiedTimestamp>2017-06-04.10:11:25.260</ModifiedTimestamp>
@@ -326,63 +297,63 @@ CategoryID</ColNames>
       <UnderlyingIndexName>PK_PrefencesForUser</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="66" parent="23" name="ProductID">
+    <column id="61" parent="22" name="ProductID">
       <Position>1</Position>
       <DataType>int|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="67" parent="23" name="Description">
+    <column id="62" parent="22" name="Description">
       <Position>2</Position>
       <DataType>nvarchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="68" parent="23" name="CategoryID">
+    <column id="63" parent="22" name="CategoryID">
       <Position>3</Position>
       <DataType>int|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="69" parent="23" name="BrandID">
+    <column id="64" parent="22" name="BrandID">
       <Position>4</Position>
       <DataType>int|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="70" parent="23" name="Price">
+    <column id="65" parent="22" name="Price">
       <Position>5</Position>
       <DataType>money|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="71" parent="23" name="PicturePath">
-      <Position>6</Position>
-      <DataType>nvarchar(50)|0</DataType>
-    </column>
-    <column id="72" parent="23" name="DateAdded">
+    <column id="66" parent="22" name="DateAdded">
       <Position>7</Position>
       <DataType>date|0</DataType>
     </column>
-    <column id="73" parent="24" name="OrderID">
+    <column id="67" parent="22" name="imagePath">
+      <Position>8</Position>
+      <DataType>nvarchar(max)|0</DataType>
+    </column>
+    <column id="68" parent="23" name="OrderID">
       <Position>1</Position>
       <DataType>int|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="74" parent="24" name="ProductID">
+    <column id="69" parent="23" name="ProductID">
       <Position>2</Position>
       <DataType>int|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="75" parent="24" name="Amount">
+    <column id="70" parent="23" name="Amount">
       <Position>3</Position>
       <DataType>int|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="76" parent="24" name="PK_ProductsInOrder">
+    <index id="71" parent="23" name="PK_ProductsInOrder">
       <Position>1</Position>
       <ColNames>OrderID
 ProductID</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="77" parent="24" name="PK_ProductsInOrder">
+    <key id="72" parent="23" name="PK_ProductsInOrder">
       <ObjectId>1141579105</ObjectId>
       <CreatedTimestamp>2017-06-02.16:33:01.110</CreatedTimestamp>
       <ModifiedTimestamp>2017-06-02.16:33:01.110</ModifiedTimestamp>
@@ -391,39 +362,39 @@ ProductID</ColNames>
       <UnderlyingIndexName>PK_ProductsInOrder</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="78" parent="25" name="QuestionID">
+    <column id="73" parent="24" name="QuestionID">
       <Position>1</Position>
       <DataType>int|0</DataType>
       <NotNull>1</NotNull>
       <SequenceIdentity>1</SequenceIdentity>
     </column>
-    <column id="79" parent="25" name="Description">
+    <column id="74" parent="24" name="Description">
       <Position>2</Position>
       <DataType>nvarchar(max)|0</DataType>
     </column>
-    <column id="80" parent="26" name="UserName">
+    <column id="75" parent="25" name="UserName">
       <Position>1</Position>
       <DataType>nvarchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="81" parent="26" name="QuestionID">
+    <column id="76" parent="25" name="QuestionID">
       <Position>2</Position>
       <DataType>int|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="82" parent="26" name="Answer">
+    <column id="77" parent="25" name="Answer">
       <Position>3</Position>
       <DataType>nvarchar(50)|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="83" parent="26" name="PK_QuestionsForUser">
+    <index id="78" parent="25" name="PK_QuestionsForUser">
       <Position>1</Position>
       <ColNames>UserName
 QuestionID</ColNames>
       <Clustering>1</Clustering>
       <Unique>1</Unique>
     </index>
-    <key id="84" parent="26" name="PK_QuestionsForUser">
+    <key id="79" parent="25" name="PK_QuestionsForUser">
       <ObjectId>1205579333</ObjectId>
       <CreatedTimestamp>2017-06-02.16:37:10.803</CreatedTimestamp>
       <ModifiedTimestamp>2017-06-02.16:37:10.803</ModifiedTimestamp>
@@ -432,12 +403,12 @@ QuestionID</ColNames>
       <UnderlyingIndexName>PK_QuestionsForUser</UnderlyingIndexName>
       <Primary>1</Primary>
     </key>
-    <column id="85" parent="27" name="ProductID">
+    <column id="80" parent="26" name="ProductID">
       <Position>1</Position>
       <DataType>int|0</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="86" parent="27" name="Quantity">
+    <column id="81" parent="26" name="Quantity">
       <Position>2</Position>
       <DataType>int|0</DataType>
       <NotNull>1</NotNull>
