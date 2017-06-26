@@ -221,23 +221,11 @@ app.controller('registerCtrl', ['$http', function ($http) {
             });
     };
     self.registerClick = function() {
-        // {
-        //     $('#regCateg').find('.myCheck').each(function () {
-        //         if (this.checked) {
-        //             alert('its on');
-        //         } else {
-        //             alert('nope');
-        //         }
-        //     });
-        // }
-
-        var checkboxes = document.getElementsByClassName(myCheck);
+        var checkboxes = document.getElementsByName("myCheck");
         var checkboxesChecked = [];
-        // loop over them all
         for (var i=0; i<checkboxes.length; i++) {
-            // And stick the checked ones onto an array...
             if (checkboxes[i].checked) {
-                checkboxesChecked.push(checkboxes[i]);
+                checkboxesChecked.push(i+1);
             }
         }
 
@@ -256,7 +244,7 @@ app.controller('registerCtrl', ['$http', function ($http) {
                 'isAdmin':'0',
                 'answers':[self.ans1, self.ans2],
                 'questions':[self.selectedQuestion.QuestionID,self.selectedQuestion2.QuestionID],
-                'Categories': self.selec
+                'categories': checkboxesChecked
             };
         self.url= url +"register";
         $http.post(self.url,JSON.stringify(Indata)).then(function(response) {
