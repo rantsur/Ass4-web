@@ -216,9 +216,9 @@ app.controller('registerCtrl', ['$http', function ($http) {
                 self.url = url + "getQuestions";
                 $http.get(self.url).then(function (response) {
                     self.Questions = response.data;
-                    self.selectedQuestion = self.Questions[0].Description;
+                    self.selectedQuestion = self.Questions[0];
                     self.Questions2 = self.Questions;
-                    self.selectedQuestion2 = self.Questions2[1].Description;
+                    self.selectedQuestion2 = self.Questions2[1];
                 }, function (errResponse) {
                     console.error('Error while Questions');
                 });
