@@ -5,10 +5,36 @@ app.config(function (localStorageServiceProvider) {
     localStorageServiceProvider.setPrefix('node_angular_App');
 });
 //-------------------------------------------------------------------------------------------------------------------
-app.controller('mainController', ['UserService', function (UserService) {
-    let vm = this;
-    vm.greeting = 'Have a nice day';
-    vm.userService = UserService;
+app.controller('mainController', ['$http','CookiesService', function ($http,CookiesService) {
+    let self = this;
+    self.productsToShow=[];
+    self.temp=[];
+    self.show=true;
+    self.loggedIn=CookiesService.isCookie();
+    self.newProducts=[];
+    self.init = function () {
+        self.url = url + "getTopXItems/5/7";
+        $http.get(self.url).then(function (response) {
+            self.temp = response.data;
+        }, function (errResponse) {
+            console.error('Error while fetching notes');
+        }).then(function () {
+            if (self.loggedIn){
+                self.url = url + "products/getNewestXItems/30";
+                $http.get(self.url).then(function (response) {
+                    self.newProducts = response.data;
+                    self.productsToShow=self.temp;
+                    self.show = false;
+                }, function (errResponse) {
+                    console.error('Error while fetching notes');
+                })
+            }
+            else{
+                self.show = false;
+                self.productsToShow=self.temp;
+            }
+        })
+    }
 }]);
 //-------------------------------------------------------------------------------------------------------------------
 app.controller('loginCtrl', ['$http', function ($http) {
