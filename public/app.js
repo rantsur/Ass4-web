@@ -64,15 +64,15 @@ app.controller('restoreCtrl', ['$http', function ($http) {
             console.error('Error while fetching notes');
         });
     };
-    self.restore = function() {
+    self.restorePass = function() {
         var Indata = {
-            'UserName': self.UserName,
-            'QuestionID':[self.questions1, self.questions2],
+            'UserName': 'ran',
+            'QuestionID':[Questions[0].QuestionID, Questions[1].QuestionID],
             'Answers':[self.ans1, self.ans2],
         };
         self.url = url+ "restore";
         $http.post(self.url,JSON.stringify(Indata)).then(function(response) {
-            self.message = response.data;
+            self.returnAns = response.data;
         }, function(errResponse) {
             console.error('Error while fetching notes');
         });

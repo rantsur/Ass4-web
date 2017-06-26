@@ -1,10 +1,18 @@
 <body>
-<div ng-controller="restoreCtrl as restoreCtrl" ng-model="Questions" data-ng-init="restoreCtrl.init()">
-    {{Questions[0].QuestionsID}}
+<div ng-controller="restoreCtrl as restoreCtrl" data-ng-init="restoreCtrl.init()">
+    <label>{{restoreCtrl.Questions[0].Description}}</label>
     <br>
-    {{Questions[1]}}
-
-
-    my check
+    <input name="restoreCtrl.ans1">
+    <br>
+    <br>
+    <label>{{restoreCtrl.Questions[1].Description}}</label>
+    <br>
+    <input name="restoreCtrl.ans2">
+    <br>
+    <br>
+    <button ng-click="restoreCtrl.restorePass()"> restore </button>
+    <br>
+    <br>
+    <label>{{restoreCtrl.returnAns}}</label>
 </div>
 </body>
