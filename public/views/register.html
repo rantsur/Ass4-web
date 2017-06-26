@@ -6,22 +6,22 @@
     <div id="Register">
         <form name="regForm">
             <label>User Name</label>
-            <input type="text" ng-model="registerCtrl.userName"/>
+            <input type="text" ng-model="registerCtrl.userName" required minlength="3" maxlength="8" ng-pattern="/^[a-zA-Z\s]*$/"/>
             <br>
             <label>Password</label>
-            <input type="password" ng-model="registerCtrl.password"/>
+            <input type="password" ng-model="registerCtrl.password" required minlength="5" maxlength="10"/>
             <br>
             <label>First Name</label>
-            <input type="text" ng-model="registerCtrl.fname"/>
+            <input type="text" ng-model="registerCtrl.fname" required/>
             <br>
             <label>Last Name</label>
-            <input type="text" ng-model="registerCtrl.lname"/>
+            <input type="text" ng-model="registerCtrl.lname" required/>
             <br>
             <label>Address</label>
-            <input type="text" ng-model="registerCtrl.Address"/>
+            <input type="text" ng-model="registerCtrl.Address" required/>
             <br>
             <label>City</label>
-            <input type="text" ng-model="registerCtrl.City"/>
+            <input type="text" ng-model="registerCtrl.City" required/>
             <br>
             <label>Country</label>
             <select ng-model="registerCtrl.selectedCountry"
@@ -29,16 +29,16 @@
             </select>
             <br>
             <label>Phone</label>
-            <input type="text" ng-model="registerCtrl.Phone"/>
+            <input type="text" ng-model="registerCtrl.Phone" required/>
             <br>
             <label>Cellular</label>
-            <input type="text" ng-model="registerCtrl.Cellular"/>
+            <input type="text" ng-model="registerCtrl.Cellular" required/>
             <br>
             <label>Email</label>
-            <input type="email" ng-model="registerCtrl.mail"/>
+            <input type="email" ng-model="registerCtrl.mail" required/>
             <br>
             <label>Credit card number</label>
-            <input type="text" ng-model="registerCtrl.ccn"/>
+            <input type="text" ng-model="registerCtrl.ccn" required/>
             <br>
             <button id="registerButton" ng-click="registerCtrl.registerClick()">
                 Register
@@ -53,7 +53,7 @@
                     ng-options="q.Description for q in registerCtrl.Questions track by q.QuestionID">
             </select>
             <br>
-            <input type="text" ng-model="registerCtrl.ans1" placeholder="type your answer here"/>
+            <input type="text" ng-model="registerCtrl.ans1" placeholder="type your answer here" required/>
         </div>
 
         Question 2:
@@ -62,7 +62,7 @@
                     ng-options="q2.Description for q2 in registerCtrl.Questions2 track by q2.QuestionID">
             </select>
             <br>
-            <input type="text" ng-model="registerCtrl.ans2" placeholder="type your answer here"/>
+            <input type="text" ng-model="registerCtrl.ans2" placeholder="type your answer here" required/>
         </div>
 
 

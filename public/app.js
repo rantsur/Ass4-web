@@ -208,7 +208,6 @@ app.controller('registerCtrl', ['$http', function ($http) {
         self.url = url + "getCategories";
         $http.get(self.url).then(function (response) {
             self.Categories = response.data;
-            // return Promise.resolve();
         }, function (errResponse) {
             console.error('Error while Categories');
         })
