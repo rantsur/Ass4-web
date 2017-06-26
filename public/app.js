@@ -1,6 +1,6 @@
 let url = "http://localhost:5000/";
-//'ngCookies'
-let app = angular.module('myApp', ['ngRoute', 'LocalStorageModule']);
+
+let app = angular.module('myApp', ['ngRoute','ngCookies','LocalStorageModule']);
 //-------------------------------------------------------------------------------------------------------------------
 app.config(function (localStorageServiceProvider) {
     localStorageServiceProvider.setPrefix('node_angular_App');
@@ -96,9 +96,9 @@ app.controller('productsCtrl', ['$http','localStorageService','$window','Cookies
         pToInsert.description=Products.Description;
         pToInsert.price=Products.Price;
         pToInsert.imagePath=Products.imagePath;
-        pToInsert.categoryName=Products.categoryName;
+        pToInsert.categoryName=Products.CategoryName;
         pToInsert.amount=1;
-        pToInsert.brandName=Products.brandName;
+        pToInsert.brandName=Products.BrandName;
 
         let valueStored = localStorageService.get(Products.ProductID);
         if (!valueStored) {
@@ -228,8 +228,8 @@ app.controller('cartCtrl', ['$http','localStorageService','$window', function($h
     self.openModal=function (product) {
         self.modalProduct=true;
         self.modalPDescription=product.description;
-        self.modalBrand=product.BrandName;
-        self.modalCategory=product.CategoryName;
+        self.modalBrand=product.brandName;
+        self.modalCategory=product.categoryName;
         self.modalPrice=product.price;
         self.modalImage=product.imagePath;
     }
@@ -328,26 +328,23 @@ app.controller('registerCtrl', ['$http', function ($http) {
 }]);
 //-------------------------------------------------------------------------------------------------------------------
 //'ngCookies'
-app.factory('CookiesService', [ function () {
+app.factory('CookiesService', ['$cookies', function ($cookies) {
     let service = {};
     service.getCookie =function () {
-        var pair = document.cookie.match(new RegExp(name + '=([^;]+)'));
-        return !!pair ? pair[1] : null;
-    }
+        return $cookies.get('shop');
+    };
     service.isCookie =function () {
-        var pair = document.cookie.match(new RegExp(name + '=([^;]+)'));
-        if(pair!=null)
-            return true
+        // var pair = document.cookie.match(new RegExp(name + '=([^;]+)'));
+        // if(pair!=null)
+        //     return true;
+        // return false;
+        let cookie=$cookies.get('shop');
+        if(cookie!=null)
+            return true;
         return false;
-    }
+    };
     return service;
 
-    // let service = {};
-    // service.isLoggedIn = false;
-    // service.isCookie =function () {
-    //     return $cookies.get('shop');
-    // }
-    // return service;
 }]);
 
 //-------------------------------------------------------------------------------------------------------------------
