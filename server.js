@@ -135,6 +135,14 @@ app.get('/getProducts', function (req, res, next) {
         });
 });
 
+app.get('/getProductsNew', function (req, res, next) {
+    DButilsAzure.Select('SELECT P.ProductID,P.Description,P.Price,P.DateAdded,P.imagePath,B.BrandName,C.CategoryName FROM Products P INNER JOIN Categories C ON P.CategoryID=C.CategoryID INNER JOIN Brands B ON P.BrandID=B.BrandID')
+        .then((ans) => res.send(ans))
+        .catch(function (err) {
+            next(err);
+        });
+});
+
 function isUserNameExist(req) {
     var userName = req.body.UserName;
     var query = "select * from Clients where UserName='" + userName + "'";

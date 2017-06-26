@@ -12,7 +12,6 @@ app.controller('mainController', ['UserService', function (UserService) {
 }]);
 //-------------------------------------------------------------------------------------------------------------------
 app.controller('loginCtrl', ['$http', function ($http) {
-
     var self = this;
     self.message;
     self.login = function() {
@@ -24,18 +23,6 @@ app.controller('loginCtrl', ['$http', function ($http) {
             console.error('Error while fetching notes');
         });
     };
-
-    // self.login = function (valid) {
-    //     if (valid) {
-    //         UserService.login(self.user).then(function (success) {
-    //             $window.alert('You are logged in');
-    //             $location.path('/');
-    //         }, function (error) {
-    //             self.errorMessage = error.data;
-    //             $window.alert('log-in has failed');
-    //         })
-    //     }
-    // };
 }]);
 //----------------------------------------------------------------
 app.controller('productsCtrl', ['$http','localStorageService','$window', function($http,localStorageService, $window) {
