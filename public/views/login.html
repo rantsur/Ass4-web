@@ -1,7 +1,6 @@
-
-<h2>Login Page</h2>
+<body>
 <div class="login-container" ng-controller="loginCtrl as loginCtrl">
-    <div class="login-form">
+    <div class="login-form" id="loginDiv">
         <form name="loginForm" ng-submit="loginCtrl.login(loginForm.$valid)" novalidate>
             <div class="form-group">
                 <label>Username</label>
@@ -29,13 +28,21 @@
             <input type="submit"
                    class="btn btn-success btn-lg"
                    value="Login"
-                   ng-disabled="loginForm.$invalid">
+                   ng-disabled="loginForm.$invalid"
+                   id="loginButton">
         </form>
         <div>
             {{loginCtrl.errorMessage}}
         </div>
+        <br>
+        <div> <p style="font-size: 18px"> restore your password </p></div>
     </div>
-
+    <div id="signUpWindow">
+        First time at our shop?
+        <br>
+        <input type="submit" id="signUpButton" value="Sign Up">
+    </div>
 </div>
+</body>
 
 
