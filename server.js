@@ -72,7 +72,7 @@ app.get('/getQuestions', function (req, res, next) {
 });
 app.get('/getUsersQuestions/:UserName', function (req, res, next) {
     var userName = req.params.UserName;
-    DButilsAzure.Select('SELECT QuestionID FROM QuestionsForUser where UserName=\'' + userName + '\'')
+    DButilsAzure.Select('SELECT QU.QuestionID, Q.Description FROM QuestionsForUser QU INNER JOIN Questions Q ON QU.QuestionID=Q.QuestionID where QU.UserName=\'' + userName + '\'')
         .then((ans) => res.send(ans))
         .catch(function (err) {
             next(err);

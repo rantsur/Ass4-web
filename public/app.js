@@ -51,6 +51,33 @@ app.controller('loginCtrl', ['$http', function ($http) {
         });
     };
 }]);
+
+//-------------------------------------------------------------------------------------------------------------------
+app.controller('restoreCtrl', ['$http', function ($http) {
+    var self = this;
+    self.message;
+    self.init = function () {
+        self.url = url + "getUsersQuestions/ran";
+        $http.get(self.url).then(function (response) {
+            self.Questions = response.data;
+        }, function (errResponse) {
+            console.error('Error while fetching notes');
+        });
+    };
+    self.restore = function() {
+        var Indata = {
+            'UserName': self.UserName,
+            'QuestionID':[self.questions1, self.questions2],
+            'Answers':[self.ans1, self.ans2],
+        };
+        self.url = url+ "restore";
+        $http.post(self.url,JSON.stringify(Indata)).then(function(response) {
+            self.message = response.data;
+        }, function(errResponse) {
+            console.error('Error while fetching notes');
+        });
+    };
+}]);
 //----------------------------------------------------------------
 app.controller('productsCtrl', ['$http','localStorageService','$window','CookiesService', function($http,localStorageService, $window,CookiesService) {
     var self = this;
@@ -344,9 +371,7 @@ app.factory('CookiesService', ['$cookies', function ($cookies) {
         return false;
     };
     return service;
-
 }]);
-
 //-------------------------------------------------------------------------------------------------------------------
 app.factory('UserService', ['$http', function ($http) {
     let service = {};
