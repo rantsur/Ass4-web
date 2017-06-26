@@ -1,12 +1,12 @@
 
 <h2>Login Page</h2>
-<div class="login-container" ng-controller="loginController as loginCtrl">
+<div class="login-container" ng-controller="loginCtrl as loginCtrl">
     <div class="login-form">
         <form name="loginForm" ng-submit="loginCtrl.login(loginForm.$valid)" novalidate>
             <div class="form-group">
                 <label>Username</label>
                 <input type="text"
-                       ng-model="loginCtrl.user.username"
+                       ng-model="loginCtrl.UserName"
                        ng-required="true"
                        class="form-control"
                        name="usernameInput"
@@ -17,7 +17,7 @@
             <div class="form-group">
                 <label>Password</label>
                 <input type="password"
-                       ng-model="loginCtrl.user.password"
+                       ng-model="loginCtrl.Password"
                        ng-required="true"
                        class="form-control"
                        name="passwordInput"
@@ -29,6 +29,7 @@
             <input type="submit"
                    class="btn btn-success btn-lg"
                    value="Login"
+                   ng-click="loginCtrl.login()"
                    ng-disabled="loginForm.$invalid">
         </form>
         <div>

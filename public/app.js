@@ -1,4 +1,4 @@
-let url = "http://localhost:5500/";
+let url = "http://localhost:5000/";
 let app = angular.module('myApp', ['ngRoute', 'LocalStorageModule']);
 //-------------------------------------------------------------------------------------------------------------------
 app.config(function (localStorageServiceProvider) {
@@ -11,22 +11,31 @@ app.controller('mainController', ['UserService', function (UserService) {
     vm.userService = UserService;
 }]);
 //-------------------------------------------------------------------------------------------------------------------
-app.controller('loginController', ['UserService', '$location', '$window',
-    function (UserService, $location, $window) {
-        let self = this;
-        self.user = {username: '', password: ''};
+app.controller('loginCtrl', ['$http', function ($http) {
 
-        self.login = function (valid) {
-            if (valid) {
-                UserService.login(self.user).then(function (success) {
-                    $window.alert('You are logged in');
-                    $location.path('/');
-                }, function (error) {
-                    self.errorMessage = error.data;
-                    $window.alert('log-in has failed');
-                })
-            }
+        var self = this;
+        self.message;
+        self.login = function() {
+            var Indata = {'UserName': self.UserName, 'Password': self.Password };
+            self.url = url+ "login";
+            $http.post(self.url,JSON.stringify(Indata)).then(function(response) {
+                self.message = response.data;
+            }, function(errResponse) {
+                console.error('Error while fetching notes');
+            });
         };
+
+        // self.login = function (valid) {
+        //     if (valid) {
+        //         UserService.login(self.user).then(function (success) {
+        //             $window.alert('You are logged in');
+        //             $location.path('/');
+        //         }, function (error) {
+        //             self.errorMessage = error.data;
+        //             $window.alert('log-in has failed');
+        //         })
+        //     }
+        // };
     }]);
 //----------------------------------------------------------------
 app.controller('productsCtrl', ['$http','localStorageService','$window', function($http,localStorageService, $window) {
@@ -159,6 +168,13 @@ app.controller('cartCtrl', ['$http','localStorageService','$window', function($h
         }
         return ProductsFromStorage;
     };
+    
+    self.isLoggedIn = function () {
+        var message = localStorageService.cookie.get('shop');
+        if(message!=null)
+            return true;
+        return false;
+    };
 
     self.Products=self.getProductsFromStorage();
     self.increaseAmount=function (Product) {
@@ -205,12 +221,26 @@ app.controller('registerCtrl', ['$http', function ($http) {
             });
     };
     self.registerClick = function() {
-        // var i;
-        // var selec = [];
-        // for (i = 0; i < self.Categories.length; i++) {
-        //     if(self.Categories[self.Categories[i]].checked == true)
-        //        selec.push(self.Categories[i]);
+        // {
+        //     $('#regCateg').find('.myCheck').each(function () {
+        //         if (this.checked) {
+        //             alert('its on');
+        //         } else {
+        //             alert('nope');
+        //         }
+        //     });
         // }
+
+        var checkboxes = document.getElementsByClassName(myCheck);
+        var checkboxesChecked = [];
+        // loop over them all
+        for (var i=0; i<checkboxes.length; i++) {
+            // And stick the checked ones onto an array...
+            if (checkboxes[i].checked) {
+                checkboxesChecked.push(checkboxes[i]);
+            }
+        }
+
         var Indata =
             {'UserName': self.userName,
                 'Password': self.password,
@@ -277,8 +307,8 @@ app.config(['$routeProvider', function ($routeProvider) {
             controller: "registerCtrl"
         })
         .when("/login", {
-            templateUrl: "../../ass3/public/views/login.html",
-            controller: "loginController"
+            templateUrl: "views/login.html",
+            controller: "loginCtrl"
         })
         .when("/cart", {
             templateUrl : "views/cart.html",

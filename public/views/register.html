@@ -67,9 +67,9 @@
 
         <br>
         Preferences:
-        <div ng-repeat="Categories in registerCtrl.Categories track by Categories.CategoryID">
+        <div id="regCateg" ng-repeat="Categories in registerCtrl.Categories">
             <label ng-bind="Categories.CategoryName"></label>
-            <input type="checkbox" ng-checked="Categories.checked">
+            <input type="checkbox" class="myCheck" ng-model="Categories.CategoryID">
         </div>
     </div>
 </div>

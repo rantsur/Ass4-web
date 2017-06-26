@@ -20,7 +20,7 @@ app.use('/users', users);
 app.use('/products', products);
 app.use('/admins', admins);
 
-var port = 5500;
+var port = 5000;
 
 app.listen(port, function () {
     console.log('listening to port: ' + port);
