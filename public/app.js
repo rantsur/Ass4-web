@@ -228,8 +228,8 @@ app.controller('cartCtrl', ['$http','localStorageService','$window', function($h
     self.openModal=function (product) {
         self.modalProduct=true;
         self.modalPDescription=product.description;
-        self.modalBrand=product.brandName;
-        self.modalCategory=product.categoryName;
+        self.modalBrand=product.BrandName;
+        self.modalCategory=product.CategoryName;
         self.modalPrice=product.price;
         self.modalImage=product.imagePath;
     }

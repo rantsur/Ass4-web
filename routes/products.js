@@ -50,6 +50,14 @@ router.get('/getNewestXItems/:Quantity/:days', function (req, res, next) {
             next(err);
         });
 });
+router.get('/getNewestXItems/:days', function (req, res, next) {
+    var dateMonthAgo = moment().subtract(req.params.days, 'day').format("YYYY-MM-DD");
+    DButilsAzure.Select('SELECT * FROM Products WHERE DateAdded>=\'' + dateMonthAgo + '\' ORDER BY DateAdded DESC')
+        .then((ans) => res.send(ans))
+        .catch(function (err) {
+            next(err);
+        });
+});
 function checkCookie(req) {
     if (req.cookies != null && req.cookies.shop) {
         return true;
