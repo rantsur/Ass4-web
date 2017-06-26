@@ -1,0 +1,45 @@
+
+<div ng-controller="productsCtrl as productsCtrl">
+    <div id="buttons_div">
+    <button ng-click="productsCtrl.getProducts()">
+        all
+    </button>
+        <button ng-click="productsCtrl.getDresses()">
+            dresses
+        </button>
+        <button ng-click="productsCtrl.getShirts()">
+            shirts
+        </button>
+        <button ng-click="productsCtrl.getTrousers()">
+            trousers
+        </button>
+        <button ng-click="productsCtrl.getSkirts()">
+        skirts
+         </button>
+        <button ng-click="productsCtrl.getUnderwear()">
+            underwear
+        </button>
+</div>
+    <BR><BR><BR>
+<image ng-show="productsCtrl.show" src="https://www.standardgolf.com/ecommerce/images/processing.gif" width="120" height="120"></image>
+    <table>
+        <thead>
+        <tr>
+            <th ><a href=""  ng-click="productsCtrl.fieldToOrderBy='Description'; productsCtrl.reverseSort = !productsCtrl.reverseSort">Description</a></th>
+            <th><a href=""  ng-click="productsCtrl.fieldToOrderBy='Category'; productsCtrl.reverseSort = !productsCtrl.reverseSort">CategoryID</a></th>
+            <th><a href=""  ng-click="productsCtrl.fieldToOrderBy='Brand'; productsCtrl.reverseSort = !productsCtrl.reverseSort">BrandID</a></th>
+            <th><a href=""  ng-click="productsCtrl.fieldToOrderBy='Price'; productsCtrl.reverseSort = !productsCtrl.reverseSort">Price</a></th>
+            <th><a href="" >image</a></th>
+        </tr>
+        </thead>
+        <tr ng-repeat="Products in productsCtrl.productsToShow | filter : productsCtrl.filterBy |
+			orderBy:productsCtrl.fieldToOrderBy:productsCtrl.reverseSort" witdh="30" height="20">
+            <td>{{Products.Description}}</td>
+            <td>{{Products.categoryName}}</td>
+            <td>{{Products.brandName}}</td>
+            <td>{{Products.Price}}</td>
+            <td><img src="{{Products.imagePath}}" width="120" height="120"></td>
+            <td><button ng-click="productsCtrl.addProductToCart(Products);">add to cart</button></td>
+        </tr>
+    </table>
+</div>

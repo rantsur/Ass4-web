@@ -9,12 +9,22 @@ body {
 	line-height: 150%;
 	font-size: 25px;
 	color:blue;
-	margin-left: 440px;
+	margin-left: 100px;
 }
 #registerButton{
 	margin-right: 40px;
 	width: 120px;
 	height: 25px;
+}
+#regOther{
+	float:right;
+	margin-top: 100px;
+	margin-right: 250px;
+	border: 1px solid red;
+	min-height: 20px;
+	text-align: left;
+	font-size: 17px;
+	line-height: 120%;
 }
 
 input { 

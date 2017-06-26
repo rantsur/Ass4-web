@@ -8,8 +8,8 @@
     <script type="text/javascript" src="angularScripts/angular-route.js"></script>
     <script type="text/javascript" src="angularScripts/angular-local-storage.min.js"></script>
     <script type="text/javascript" src="StorageExampleController.js"></script>
-
-    <script type="text/javascript" src="CityModel.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Indie Flower|Macondo">
 
 
 </head>
@@ -26,8 +26,8 @@
         <div>
             <a ng-href="#/register">Register</a>
         </div>
-        <div ng-show="mainCtrl.userService.isLoggedIn">
-            <a ng-href="#/cities">Cities List</a>
+        <div>
+            <a ng-href="#/cart">cart</a>
         </div>
         <div>
             <span ng-hide="mainCtrl.userService.isLoggedIn">
