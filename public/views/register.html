@@ -1,0 +1,75 @@
+<head>
+    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Indie Flower|Macondo">
+</head>
+<div id="mainRegDiv" data-ng-controller="registerCtrl as registerCtrl" data-ng-init="registerCtrl.init()">
+    <div id="Register">
+        <form name="regForm">
+            <label>User Name</label>
+            <input type="text" ng-model="registerCtrl.userName"/>
+            <br>
+            <label>Password</label>
+            <input type="password" ng-model="registerCtrl.password"/>
+            <br>
+            <label>First Name</label>
+            <input type="text" ng-model="registerCtrl.fname"/>
+            <br>
+            <label>Last Name</label>
+            <input type="text" ng-model="registerCtrl.lname"/>
+            <br>
+            <label>Address</label>
+            <input type="text" ng-model="registerCtrl.Address"/>
+            <br>
+            <label>City</label>
+            <input type="text" ng-model="registerCtrl.City"/>
+            <br>
+            <label>Country</label>
+            <select name="Countries">
+                <option value="Australia">Australia</option>
+                <option value="Bolivia">Bolivia</option>
+                <option value="China">China</option>
+            </select>
+            <br>
+            <label>Phone</label>
+            <input type="text" ng-model="registerCtrl.Phone"/>
+            <br>
+            <label>Cellular</label>
+            <input type="text" ng-model="registerCtrl.Cellular"/>
+            <br>
+            <label>Email</label>
+            <input type="email" ng-model="registerCtrl.mail"/>
+            <br>
+            <label>Credit card number</label>
+            <input type="text" ng-model="registerCtrl.ccn"/>
+            <br>
+            <button id="registerButton" ng-click="registerCtrl.registerClick()">
+                Register
+            </button>
+        </form>
+    </div>
+    <div id="regOther">
+        <br>
+        Question 1:
+        <div>
+            <select ng-model="registerCtrl.selectedQuestion" ng-options="q.Description for q in registerCtrl.Questions track by q.QuestionID">
+            </select>
+            <br>
+            <input type="text" ng-model="registerCtrl.ans1" placeholder="type your answer here"/>
+        </div>
+
+        Question 2:
+        <div>
+            <select ng-model="registerCtrl.selectedQuestion2" ng-options="q2.Description for q2 in registerCtrl.Questions2 track by q2.QuestionID">
+            </select>
+            <br>
+            <input type="text" ng-model="registerCtrl.ans2" placeholder="type your answer here"/>
+        </div>
+
+        <br>
+        Preferences:
+        <div ng-repeat="Categories in registerCtrl.Categories track by Categories.CategoryID">
+            <label ng-bind="Categories.CategoryName"></label>
+            <input type="checkbox" ng-checked="Categories.checked">
+        </div>
+    </div>
+</div>
