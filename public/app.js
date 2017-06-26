@@ -13,30 +13,30 @@ app.controller('mainController', ['UserService', function (UserService) {
 //-------------------------------------------------------------------------------------------------------------------
 app.controller('loginCtrl', ['$http', function ($http) {
 
-        var self = this;
-        self.message;
-        self.login = function() {
-            var Indata = {'UserName': self.UserName, 'Password': self.Password };
-            self.url = url+ "login";
-            $http.post(self.url,JSON.stringify(Indata)).then(function(response) {
-                self.message = response.data;
-            }, function(errResponse) {
-                console.error('Error while fetching notes');
-            });
-        };
+    var self = this;
+    self.message;
+    self.login = function() {
+        var Indata = {'UserName': self.UserName, 'Password': self.Password };
+        self.url = url+ "login";
+        $http.post(self.url,JSON.stringify(Indata)).then(function(response) {
+            self.message = response.data;
+        }, function(errResponse) {
+            console.error('Error while fetching notes');
+        });
+    };
 
-        // self.login = function (valid) {
-        //     if (valid) {
-        //         UserService.login(self.user).then(function (success) {
-        //             $window.alert('You are logged in');
-        //             $location.path('/');
-        //         }, function (error) {
-        //             self.errorMessage = error.data;
-        //             $window.alert('log-in has failed');
-        //         })
-        //     }
-        // };
-    }]);
+    // self.login = function (valid) {
+    //     if (valid) {
+    //         UserService.login(self.user).then(function (success) {
+    //             $window.alert('You are logged in');
+    //             $location.path('/');
+    //         }, function (error) {
+    //             self.errorMessage = error.data;
+    //             $window.alert('log-in has failed');
+    //         })
+    //     }
+    // };
+}]);
 //----------------------------------------------------------------
 app.controller('productsCtrl', ['$http','localStorageService','$window', function($http,localStorageService, $window) {
     var self = this;
@@ -168,7 +168,7 @@ app.controller('cartCtrl', ['$http','localStorageService','$window', function($h
         }
         return ProductsFromStorage;
     };
-    
+
     self.isLoggedIn = function () {
         var message = localStorageService.cookie.get('shop');
         if(message!=null)
@@ -202,7 +202,9 @@ app.controller('registerCtrl', ['$http', function ($http) {
     var Categories = [];
     var Questions = [];
     var Questions2 = [];
+    var Countries = [];
     self.init = function () {
+        loadXMLDoc();
         self.url = url + "getCategories";
         $http.get(self.url).then(function (response) {
             self.Categories = response.data;
@@ -214,12 +216,39 @@ app.controller('registerCtrl', ['$http', function ($http) {
                 self.url = url + "getQuestions";
                 $http.get(self.url).then(function (response) {
                     self.Questions = response.data;
+                    self.selectedQuestion = self.Questions[0].Description;
                     self.Questions2 = self.Questions;
+                    self.selectedQuestion2 = self.Questions2[1].Description;
                 }, function (errResponse) {
                     console.error('Error while Questions');
                 });
             });
     };
+
+    function loadXMLDoc() {
+        var xmlhttp = new XMLHttpRequest();
+        xmlhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                myFunction(this);
+            }
+        };
+        xmlhttp.open("GET", "countries.xml", true);
+        xmlhttp.send();
+    }
+    function myFunction(xml) {
+        var i;
+        var xmlDoc = xml.responseXML;
+        var temp = [];
+        var x = xmlDoc.getElementsByTagName("Country");
+        for (i = 0; i <x.length; i++) {
+            var json = { "ID" :x[i].getElementsByTagName("ID")[0].childNodes[0].nodeValue.toString(),
+                "Name" :x[i].getElementsByTagName("Name")[0].childNodes[0].nodeValue.toString()}
+            temp.push(json);
+        }
+        self.Countries = temp;
+        self.selectedCountry = self.Countries[4];
+    }
+
     self.registerClick = function() {
         var checkboxes = document.getElementsByName("myCheck");
         var checkboxesChecked = [];
@@ -228,32 +257,6 @@ app.controller('registerCtrl', ['$http', function ($http) {
                 checkboxesChecked.push(i+1);
             }
         }
-
-        // function loadXMLDoc() {
-        //     var xmlhttp = new XMLHttpRequest();
-        //     xmlhttp.onreadystatechange = function() {
-        //         if (this.readyState == 4 && this.status == 200) {
-        //             myFunction(this);
-        //         }
-        //     };
-        //     xmlhttp.open("GET", "cd_catalog.xml", true);
-        //     xmlhttp.send();
-        // }
-        // function myFunction(xml) {
-        //     var i;
-        //     var xmlDoc = xml.responseXML;
-        //     var table="<tr><th>Artist</th><th>Title</th></tr>";
-        //     var x = xmlDoc.getElementsByTagName("CD");
-        //     for (i = 0; i <x.length; i++) {
-        //         table += "<tr><td>" +
-        //             x[i].getElementsByTagName("ARTIST")[0].childNodes[0].nodeValue +
-        //             "</td><td>" +
-        //             x[i].getElementsByTagName("TITLE")[0].childNodes[0].nodeValue +
-        //             "</td></tr>";
-        //     }
-        //     document.getElementById("demo").innerHTML = table;
-        // }
-
         var Indata =
             {'UserName': self.userName,
                 'Password': self.password,
@@ -261,7 +264,7 @@ app.controller('registerCtrl', ['$http', function ($http) {
                 'LastName': self.lname,
                 'Address': self.Address,
                 'City': self.City,
-                'Country': self.Country,
+                'Country': self.selectedCountry.Name,
                 'Phone': self.Phone,
                 'Cellular': self.Cellular,
                 'Mail': self.mail,

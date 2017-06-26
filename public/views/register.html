@@ -24,10 +24,8 @@
             <input type="text" ng-model="registerCtrl.City"/>
             <br>
             <label>Country</label>
-            <select name="Countries">
-                <option value="Australia">Australia</option>
-                <option value="Bolivia">Bolivia</option>
-                <option value="China">China</option>
+            <select ng-model="registerCtrl.selectedCountry"
+                    ng-options="c.Name for c in registerCtrl.Countries">
             </select>
             <br>
             <label>Phone</label>
@@ -51,7 +49,8 @@
         <br>
         Question 1:
         <div>
-            <select ng-model="registerCtrl.selectedQuestion" ng-options="q.Description for q in registerCtrl.Questions track by q.QuestionID">
+            <select ng-model="registerCtrl.selectedQuestion"
+                    ng-options="q.Description for q in registerCtrl.Questions track by q.QuestionID">
             </select>
             <br>
             <input type="text" ng-model="registerCtrl.ans1" placeholder="type your answer here"/>
@@ -59,11 +58,13 @@
 
         Question 2:
         <div>
-            <select ng-model="registerCtrl.selectedQuestion2" ng-options="q2.Description for q2 in registerCtrl.Questions2 track by q2.QuestionID">
+            <select ng-model="registerCtrl.selectedQuestion2"
+                    ng-options="q2.Description for q2 in registerCtrl.Questions2 track by q2.QuestionID">
             </select>
             <br>
             <input type="text" ng-model="registerCtrl.ans2" placeholder="type your answer here"/>
         </div>
+
 
         <br>
         Preferences:
