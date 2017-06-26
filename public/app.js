@@ -1,4 +1,5 @@
 let url = "http://localhost:5000/";
+//'ngCookies'
 let app = angular.module('myApp', ['ngRoute', 'LocalStorageModule']);
 //-------------------------------------------------------------------------------------------------------------------
 app.config(function (localStorageServiceProvider) {
@@ -325,7 +326,6 @@ app.controller('registerCtrl', ['$http', function ($http) {
         });
     };
 }]);
-
 //-------------------------------------------------------------------------------------------------------------------
 //'ngCookies'
 app.factory('CookiesService', [ function () {
@@ -400,10 +400,6 @@ app.config(['$routeProvider', function ($routeProvider) {
         .when("/restore", {
             templateUrl : "views/restore.html",
             controller: 'restoreCtrl'
-        })
-        .when("/StorageExample", {
-            templateUrl: "../../ass3/public/views/StorageExample.html",
-            controller: 'StorageExampleController'
         })
         .otherwise({
             redirect: '/',
