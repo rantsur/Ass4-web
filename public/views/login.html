@@ -37,10 +37,11 @@
         <br>
         <div> <p style="font-size: 18px"> restore your password </p></div>
     </div>
-    <div id="signUpWindow">
+    <div id="signUpWindow" ng-controller="mainController as mainCtrl">
         First time at our shop?
         <br>
-        <input type="submit" id="signUpButton" value="Sign Up">
+        <a ng-href="#/register">Register</a>
+        <!--<input type="submit" id="signUpButton" value="Sign Up" onclick="">-->
     </div>
 </div>
 </body>
