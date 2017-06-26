@@ -1,5 +1,10 @@
+
+<head>
+    <link rel="stylesheet" type="text/css" href="views/modalStyle.css" />
+</head>
+
 <div ng-controller="cartCtrl as cartCtrl">
-    <div ng-show="cartCtrl.isLoggedIn()"> im logged in</div>
+
     <BR><BR><BR>
     <image ng-show="cartCtrl.show" src="https://www.standardgolf.com/ecommerce/images/processing.gif" width="120" height="120"></image>
     <table>
@@ -8,7 +13,7 @@
             <th ><a href=""  ng-click="cartCtrl.fieldToOrderBy='description'; cartCtrl.reverseSort = !cartCtrl.reverseSort">Description</a></th>
             <th ><a href=""  ng-click="cartCtrl.fieldToOrderBy='categoryName'; cartCtrl.reverseSort = !cartCtrl.reverseSort">Category</a></th>
             <th><a  href=""  ng-click="cartCtrl.fieldToOrderBy='amount'; cartCtrl.reverseSort = !cartCtrl.reverseSort">Amount</a></th>
-            <th><a href="" >image</a></th>
+            <th><a  >image</a></th>
             <th><a >Price</a></th>
         </tr>
         </thead>
@@ -16,14 +21,77 @@
             <td>{{Products.description}}</td>
             <td>{{Products.categoryName}}</td>
             <td><div><button ng-click="cartCtrl.increaseAmount(Products)">+</button>   {{Products.amount}}   <button ng-click="cartCtrl.decreaseAmount(Products)">-</button></div></td>
-            <td><img src="{{Products.imagePath}}" width="120" height="120"></td>
-            <td>{{Products.price*Products.amount}}</td>
+            <td><a href="" ng-click="cartCtrl.openModal(Products)"><img src="{{Products.imagePath}}" width="120" height="120"></a></td>
+            <td>{{Products.price*Products.amount}} ₪</td>
             <td><button ng-click="cartCtrl.DeleteItem(Products)">remove</button></td>
         </tr>
+        <tr witdh="30" height="20">
+            <td></td>
+            <td></td>
+            <td> </td>
+            <td><b>Total Amount</b></td>
+            <td> {{cartCtrl.totalAmount}} ₪</td>
+            <td></td>
+        </tr>
+
     </table>
     <div id="buttons_div">
         <button ng-click="cartCtrl.ClearAll()">
             clear cart
         </button>
+        <button >
+            purchase cart
+        </button>
+        <button ng-click="cartCtrl.viewOldOrders()">
+            previous orders
+        </button>
     </div>
+    <div ng-show="cartCtrl.showOrders">
+        <table>
+            <thead>
+            <tr>
+                <th >Order Number</a></th>
+                <th >Order Details</th>
+            </tr>
+            </thead>
+            <tr ng-repeat="order in cartCtrl.orders " witdh="30" height="20">
+                <td>{{order.OrderID}}</td>
+                <td><a  href="" ng-click="cartCtrl.openModalOrder(order)">click here to view</a></td>
+            </tr>
+        </table>
+    </div>
+
+    <div ng-show="cartCtrl.modalProduct" id="productModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" ng-click="cartCtrl.closeClickModal()">&times;</span>
+                <h3>{{cartCtrl.modalPDescription}}</h3>
+            </div>
+            <div class="modal-body">
+                <ul> Brand:  {{cartCtrl.modalBrand}}</ul>
+                <ul> Category:   {{cartCtrl.modalCategory}}</ul>
+                <ul> Price:   {{cartCtrl.modalPrice}}</ul>
+                <img src="{{cartCtrl.modalImage}}" width="280px", height="280px">
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+
+    <div ng-show="cartCtrl.modalOrder" id="orderModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="close" ng-click="cartCtrl.closeClickModal()">&times;</span>
+                <h3>Order No: {{cartCtrl.modalOrderNo}}</h3>
+            </div>
+            <div class="modal-body">
+                <ul> Purchase Date:  {{cartCtrl.modalOrderDate}}</ul>
+                <ul> Shipment Date:   {{cartCtrl.modalShipmentDate}}</ul>
+                <ul> Total Amount:   {{cartCtrl.modalTotalAmount}}</ul>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+
 </div>

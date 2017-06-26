@@ -25,47 +25,44 @@ app.controller('loginCtrl', ['$http', function ($http) {
     };
 }]);
 //----------------------------------------------------------------
-app.controller('productsCtrl', ['$http','localStorageService','$window', function($http,localStorageService, $window) {
+app.controller('productsCtrl', ['$http','localStorageService','$window','CookiesService', function($http,localStorageService, $window,CookiesService) {
     var self = this;
     self.Products = [];
     self.productsToShow=[];
     self.Categories = [];
     self.show=true;
     self.brands=[];
+    self.loggedIn=CookiesService.isCookie();
 
-    self.url = url+"getProducts";
-    $http.get(self.url).then(function(response) {
-        self.Products = response.data;
-    }, function(errResponse) {
-        console.error('Error while fetching notes');
-    }).then(function () {
-        self.url = url+"getCategories";
-        $http.get(self.url).then(function(response) {
-            self.Categories = response.data;
-            for (let i=0;i<self.Products.length;i++)
-            {
-                self.Products[i].categoryName=self.Categories[ self.Products[i].CategoryID-1].CategoryName;
-            }
-        }, function(errResponse) {
+    self.init = function () {
+        self.url = url + "getProductsNew";
+        $http.get(self.url).then(function (response) {
+            self.Products = response.data;
+        }, function (errResponse) {
             console.error('Error while fetching notes');
         }).then(function () {
-            self.url = url+"getBrands";
-            $http.get(self.url).then(function(response) {
-                self.brands = response.data;
-                for (let i=0;i<self.Products.length;i++)
-                {
-                    self.Products[i].brandName=self.brands[ self.Products[i].BrandID-1].BrandName;
+            if(self.loggedIn){
+                self.url = url + "users/getRecommendedProductsForUser";
+                $http.get(self.url).then(function (response) {
+                    self.productsToRecomend = response.data;
+                    for (let i = 0; i < self.Products.length; i++) {
+                        self.productsToShow[i] = self.Products[i];
+                    }
+                    self.show = false;
+                }, function (errResponse) {
+                    console.error('Error while fetching notes');
+                })
+            }
+            else
+            {
+                for (let i = 0; i < self.Products.length; i++) {
+                    self.productsToShow[i] = self.Products[i];
                 }
-                for (let i=0;i<self.Products.length;i++)
-                {
-                    self.productsToShow[i]=self.Products[i];
-                }
-                self.show=false;
-            }, function(errResponse) {
-                console.error('Error while fetching notes');
-            })
+                self.show = false;
+            }
         })
-    })
+
+    };
     self.addProductToCart=function (Products) {
         let pToInsert= new Object();
         pToInsert.ID=Products.ProductID;
@@ -146,32 +143,47 @@ app.controller('productsCtrl', ['$http','localStorageService','$window', functio
 //-------------------------------------------------------------------------------------------------------------------
 app.controller('cartCtrl', ['$http','localStorageService','$window', function($http,localStorageService) {
     var self = this;
+    self.showOrders=false;
+
+    self.viewOldOrders=function () {
+        self.orders=[];
+        if(!self.showOrders) {
+            self.url = url + "users/getPastPurchases";
+            $http.get(self.url).then(function (response) {
+                self.orders = response.data;
+            }, function (errResponse) {
+                console.error('Error while fetching notes');
+            })
+            self.showOrders=true;
+        }
+        else
+            self.showOrders=false;
+    }
+
     self.getProductsFromStorage=function () {
         let ProductsFromStorage = [];
+        self.totalAmount=0;
         let keys=localStorageService.keys();
         for(let i=0;i<keys.length;i++)
         {
             ProductsFromStorage[i]=localStorageService.get(keys[i]);
+            self.totalAmount=self.totalAmount+(ProductsFromStorage[i].price*ProductsFromStorage[i].amount);
         }
         return ProductsFromStorage;
-    };
-
-    self.isLoggedIn = function () {
-        var message = localStorageService.cookie.get('shop');
-        if(message!=null)
-            return true;
-        return false;
     };
 
     self.Products=self.getProductsFromStorage();
     self.increaseAmount=function (Product) {
         Product.amount= Product.amount+1;
         localStorageService.set(Product.ID, Product)
+        self.totalAmount=self.totalAmount+Product.price;
+
     };
     self.decreaseAmount=function (Product) {
         if( Product.amount!=0) {
             Product.amount = Product.amount - 1;
             localStorageService.set(Product.ID, Product)
+            self.totalAmount=self.totalAmount-Product.price;
         }
     };
     self.DeleteItem=function (Product) {
@@ -181,6 +193,25 @@ app.controller('cartCtrl', ['$http','localStorageService','$window', function($h
     self.ClearAll=function () {
         localStorageService.clearAll();
         self.Products=self.getProductsFromStorage();
+    }
+    self.closeClickModal=function () {
+        self.modalProduct=false;
+        self.modalOrder=false;
+    }
+    self.openModal=function (product) {
+        self.modalProduct=true;
+        self.modalPDescription=product.description;
+        self.modalBrand=product.brandName;
+        self.modalCategory=product.categoryName;
+        self.modalPrice=product.price;
+        self.modalImage=product.imagePath;
+    }
+    self.openModalOrder=function (order) {
+        self.modalOrder=true;
+        self.modalOrderNo=order.OrderID;
+        self.modalOrderDate=order.OrderDate.substring(0,10);
+        self.modalShipmentDate=order.ShipmentDate.substring(0,10);
+        self.modalTotalAmount=order.TotalAmount;
     }
 }]);
 //----------------------------------------------------------------
@@ -270,6 +301,30 @@ app.controller('registerCtrl', ['$http', function ($http) {
 }]);
 
 //-------------------------------------------------------------------------------------------------------------------
+//'ngCookies'
+app.factory('CookiesService', [ function () {
+    let service = {};
+    service.getCookie =function () {
+        var pair = document.cookie.match(new RegExp(name + '=([^;]+)'));
+        return !!pair ? pair[1] : null;
+    }
+    service.isCookie =function () {
+        var pair = document.cookie.match(new RegExp(name + '=([^;]+)'));
+        if(pair!=null)
+            return true
+        return false;
+    }
+    return service;
+
+    // let service = {};
+    // service.isLoggedIn = false;
+    // service.isCookie =function () {
+    //     return $cookies.get('shop');
+    // }
+    // return service;
+}]);
+
+//-------------------------------------------------------------------------------------------------------------------
 app.factory('UserService', ['$http', function ($http) {
     let service = {};
     service.isLoggedIn = false;
@@ -315,6 +370,10 @@ app.config(['$routeProvider', function ($routeProvider) {
         .when("/cart", {
             templateUrl : "views/cart.html",
             controller: 'cartCtrl'
+        })
+        .when("/restore", {
+            templateUrl : "views/restore.html",
+            controller: 'restoreCtrl'
         })
         .when("/StorageExample", {
             templateUrl: "../../ass3/public/views/StorageExample.html",

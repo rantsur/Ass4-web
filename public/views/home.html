@@ -1,7 +1,21 @@
 
-<div class="login-container" ng-controller="mainController as mainCtrl">
+<div class="login-container" ng-controller="mainController as mainCtrl" data-ng-init="mainCtrl.init()">
     <h2>Home</h2>
-    <div>
-        {{mainCtrl.greeting}}
+    <image ng-show="mainCtrl.show" src="https://www.standardgolf.com/ecommerce/images/processing.gif" width="120" height="120"></image>
+    <div id="mainProducts_div">
+        <div id="hotProducts_div">
+            <span ng-show="!mainCtrl.show"><u>The hotest products this week...</u></span>
+            <div  class="product_div" ng-repeat="Products in mainCtrl.productsToShow" >
+                <img src="{{Products.imagePath}}" width="120" height="120">
+                <p>{{Products.Description}}</p>
+            </div>
+        </div>
+        <div id="newProducts_div" ng-show="mainCtrl.loggedIn">
+            <span ng-show="!mainCtrl.show"><u>The newest products this month...</u></span>
+            <div  class="product_div" ng-repeat="Products in mainCtrl.newProducts" >
+                <img src="{{Products.imagePath}}" width="120" height="120">
+                <p>{{Products.Description}}</p>
+            </div>
+        </div>
     </div>
 </div>
