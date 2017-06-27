@@ -1,4 +1,3 @@
-
 <div ng-controller="productsCtrl as productsCtrl" data-ng-init="productsCtrl.init()">
     <div id="buttons_div">
         <button ng-click="productsCtrl.getProducts()">
@@ -22,8 +21,11 @@
     </div>
     <BR>
     <div id="main_div">
-        <div>
-            <image ng-show="productsCtrl.show"  src="https://www.standardgolf.com/ecommerce/images/processing.gif" width="120" height="120"></image>
+        <div id="loading" ng-show="productsCtrl.show">
+            <center><image src="https://www.standardgolf.com/ecommerce/images/processing.gif" width="120" height="120"></image> </center>
+            Loading...
+        </div>
+        <div id="leftProducts">
             <table>
                 <p><input placeholder="Search" type="text" ng-model="search"></p>
                 <thead>
@@ -46,7 +48,7 @@
                 </tr>
             </table>
         </div>
-        <div ng-show="productsCtrl.loggedIn" id="hot">
+        <div ng-show="productsCtrl.loggedIn" id="rightProducts">
             <span>You may love:</span>
             <table>
                 <thead>

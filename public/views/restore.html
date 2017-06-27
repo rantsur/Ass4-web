@@ -10,12 +10,11 @@
     <div ng-show="restoreCtrl.gotQuestions">
         <label>{{restoreCtrl.Questions[0].Description}}</label>
         <br>
-        <input ng-model="restoreCtrl.ans1">
-        <br>
+        <center><input ng-model="restoreCtrl.ans1"></center>
         <br>
         <label>{{restoreCtrl.Questions[1].Description}}</label>
         <br>
-        <input ng-model="restoreCtrl.ans2">
+        <center><input ng-model="restoreCtrl.ans2"></center>
         <br>
         <br>
         <button id="loginButton" ng-click="restoreCtrl.restorePass()"> Get Password </button>
@@ -23,8 +22,8 @@
         <br>
     </div>
 
-    <div ng-show="restoreCtrl.gotPass">
-        Your Password is:
+    <div id="getPass" ng-show="restoreCtrl.gotPass">
+         Your password is:
         <br>
         <label>{{restoreCtrl.restoredPass}}</label>
     </div>
