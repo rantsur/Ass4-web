@@ -10,27 +10,19 @@
     <script type="text/javascript" src="angularScripts/angular-local-storage.min.js"></script>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Indie Flower|Macondo">
-
-
 </head>
 <body>
-<header><h1>My Shop</h1></header>
+<header> <center><h2>My Shop</h2> </center></header>
 
 <div ng-controller="mainController as mainCtrl">
-    <div>
+    <div id="nav">
         <a ng-href="#/">Home</a> |
-        <a ng-href="#/products">Products</a> |
         <a ng-href="#/register">Register</a> |
+        <a ng-href="#/login">Login</a> |
+        <a ng-href="#/products">Products</a> |
         <a ng-href="#/cart">cart</a> |
-        <span ng-hide="mainCtrl.userService.isLoggedIn">
-                <a ng-href="#/login">Login</a> |
-            </span>
-        <span>
-                <a ng-href="#/StorageExample">Local-Storage</a>
-            </span>
+        <a ng-href="#/StorageExample">Local-Storage</a>
     </div>
-    <br>
-    <br>
     <ng-view></ng-view>
 </div>
 

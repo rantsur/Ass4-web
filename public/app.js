@@ -365,6 +365,8 @@ app.controller('registerCtrl', ['$http', function ($http) {
         self.url= url +"register";
         $http.post(self.url,JSON.stringify(Indata)).then(function(response) {
             self.message = response.data;
+            alert("Registration Complete");
+            window.location.href = "http://localhost:5000/#/login";
         }, function(errResponse) {
             console.error('Error while fetching notes');
         });

@@ -5,11 +5,10 @@ body {
 #Register{
 	display: inline-block;
 	text-align: right;
-	padding-top: 80px;
-	line-height: 150%;
-	font-size: 25px;
-	color:blue;
-	margin-left: 100px;
+	padding-top: 5px;
+	line-height: 140%;
+	font-size: 17px;
+	margin-left: 150px;
 }
 #registerButton{
 	margin-right: 40px;
@@ -18,9 +17,9 @@ body {
 }
 #regOther{
 	float:right;
-	margin-top: 100px;
+	margin-top: 40px;
 	margin-right: 250px;
-	border: 1px solid red;
+	border: 1px solid black;
 	min-height: 20px;
 	text-align: left;
 	font-size: 17px;
@@ -35,7 +34,6 @@ body {
 	text-align: left;
 	font-size: 25px;
 	line-height: 120%;
-	color:blue;
 	display: inline-block;
 }
 #signUpButton{
@@ -49,7 +47,6 @@ body {
 	padding-top: 80px;
 	line-height: 150%;
 	font-size: 25px;
-	color:blue;
 	margin-left: 140px;
 }
 #loginButton{
@@ -64,4 +61,37 @@ input {
 	margin: 10px;
 	font-family: 'Macondo', cursive;
 	font-weight: bold;
+}
+
+#nav {
+	padding:8px;
+	color:#f6dde3;
+	text-align: center;
+	position: fixed;
+	width: 99%;
+	/*z-index: 99999;*/
+	vertical-align: middle;
+	background-color: black;
+}
+#nav a {
+	margin: 0 10px;
+}
+#nav a:visited, #nav a:link {
+	text-decoration:none;
+	color:#f6dde3;
+}
+#nav a:hover {
+	text-decoration:underline;
+	color:#f6dde3;
+}
+
+#hot{
+	float:right;
+	margin-top: 40px;
+	margin-right: 100px;
+	border: 1px solid black;
+	min-height: 20px;
+	text-align: left;
+	font-size: 17px;
+	line-height: 120%;
 }
