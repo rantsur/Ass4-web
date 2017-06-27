@@ -1,5 +1,4 @@
 let url = "http://localhost:5000/";
-
 let app = angular.module('myApp', ['ngRoute','ngCookies','LocalStorageModule']);
 //-------------------------------------------------------------------------------------------------------------------
 app.config(function (localStorageServiceProvider) {
@@ -12,7 +11,9 @@ app.controller('mainController', ['$http','CookiesService', function ($http,Cook
     self.temp=[];
     self.show=true;
     self.loggedIn=CookiesService.isCookie();
-    self.newProducts=[];
+    self.user=CookiesService.getCookie();
+    self.username=self.user.UserName;
+        self.newProducts=[];
     self.init = function () {
         self.url = url + "getTopXItems/5/7";
         $http.get(self.url).then(function (response) {
@@ -56,10 +57,12 @@ app.controller('loginCtrl', ['$http', function ($http) {
 app.controller('restoreCtrl', ['$http', function ($http) {
     var self = this;
     self.message;
-    self.init = function () {
-        self.url = url + "getUsersQuestions/ran";
+    self.emptyQuestions=false;
+    self.getQuestions = function () {
+        self.url = url + "getUsersQuestions/"+self.userName;
         $http.get(self.url).then(function (response) {
             self.Questions = response.data;
+            self.emptyQuestions=false;
         }, function (errResponse) {
             console.error('Error while fetching notes');
         });
@@ -354,7 +357,7 @@ app.controller('registerCtrl', ['$http', function ($http) {
 app.factory('CookiesService', ['$cookies', function ($cookies) {
     let service = {};
     service.getCookie =function () {
-        return $cookies.get('shop');
+        return $cookies.getObject('shop');
     };
     service.isCookie =function () {
         // var pair = document.cookie.match(new RegExp(name + '=([^;]+)'));

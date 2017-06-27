@@ -1,18 +1,28 @@
 <body>
-<div ng-controller="restoreCtrl as restoreCtrl" data-ng-init="restoreCtrl.init()">
-    <label>{{restoreCtrl.Questions[0].Description}}</label>
-    <br>
-    <input ng-model="restoreCtrl.ans1">
-    <br>
-    <br>
-    <label>{{restoreCtrl.Questions[1].Description}}</label>
-    <br>
-    <input ng-model="restoreCtrl.ans2">
-    <br>
-    <br>
-    <button id="restoreButton" ng-click="restoreCtrl.restorePass()"> restore </button>
-    <br>
-    <br>
-    <label>{{restoreCtrl.returnAns}}</label>
+<div ng-controller="restoreCtrl as restoreCtrl" ng-model="restoreCtrl.emptyQuestions" data-ng-init="restoreCtrl.init()">
+    <div ng-show="restoreCtrl.emptyQuestions">
+        <label>User Name</label>
+        <input type="text" ng-model="restoreCtrl.userName">
+        <br>
+        <button id="getQuestions" ng-click="restoreCtrl.getQuestions()"> Get My Identify Questions </button>
+    </div>
+
+
+    <div ng-hide="restoreCtrl.emptyQuestions">
+        <label>{{restoreCtrl.Questions[0].Description}}</label>
+        <br>
+        <input ng-model="restoreCtrl.ans1">
+        <br>
+        <br>
+        <label>{{restoreCtrl.Questions[1].Description}}</label>
+        <br>
+        <input ng-model="restoreCtrl.ans2">
+        <br>
+        <br>
+        <button id="restoreButton" ng-click="restoreCtrl.restorePass()"> restore </button>
+        <br>
+        <br>
+        <label>{{restoreCtrl.returnAns}}</label>
+    </div>
 </div>
 </body>

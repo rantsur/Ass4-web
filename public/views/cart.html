@@ -21,7 +21,7 @@
             <td>{{Products.description}}</td>
             <td>{{Products.categoryName}}</td>
             <td><div><button ng-click="cartCtrl.increaseAmount(Products)">+</button>   {{Products.amount}}   <button ng-click="cartCtrl.decreaseAmount(Products)">-</button></div></td>
-            <td><a href="" ng-click="cartCtrl.openModal(Products)"><img src="{{Products.imagePath}}" width="120" height="120"></a></td>
+            <td><a href="" ng-click="cartCtrl.openModal(Products)"><img ng-src="{{Products.imagePath}}" width="120" height="120"></a></td>
             <td>{{Products.price*Products.amount}} ₪</td>
             <td><button ng-click="cartCtrl.DeleteItem(Products)">remove</button></td>
         </tr>
