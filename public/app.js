@@ -67,12 +67,12 @@ app.controller('restoreCtrl', ['$http', function ($http) {
     self.restorePass = function() {
         var Indata = {
             'UserName': 'ran',
-            'QuestionID':[Questions[0].QuestionID, Questions[1].QuestionID],
-            'Answers':[self.ans1, self.ans2],
+            'QuestionID':[self.Questions[0].QuestionID, self.Questions[1].QuestionID],
+            'Answers':[self.ans1, self.ans2]
         };
-        self.url = url+ "restore";
+        self.url = url+ "restorePassword";
         $http.post(self.url,JSON.stringify(Indata)).then(function(response) {
-            self.returnAns = response.data;
+            self.message = response.data;
         }, function(errResponse) {
             console.error('Error while fetching notes');
         });
@@ -115,7 +115,6 @@ app.controller('productsCtrl', ['$http','localStorageService','$window','Cookies
                 self.show = false;
             }
         })
-
     };
     self.addProductToCart=function (Products) {
         let pToInsert= new Object();
@@ -136,13 +135,11 @@ app.controller('productsCtrl', ['$http','localStorageService','$window','Cookies
         }
         else
             $window.alert('the item is already in your cart');
-    }
+    };
 
     self.getProducts=function () {
         self.productsToShow=self.Products;
-
-    }
-
+    };
     self.getUnderwear=function () {
         self.productsToShow = 0;
         self.productsToShow = [];
@@ -212,7 +209,7 @@ app.controller('cartCtrl', ['$http','localStorageService','$window', function($h
         }
         else
             self.showOrders=false;
-    }
+    };
 
     self.getProductsFromStorage=function () {
         let ProductsFromStorage = [];
@@ -229,14 +226,13 @@ app.controller('cartCtrl', ['$http','localStorageService','$window', function($h
     self.Products=self.getProductsFromStorage();
     self.increaseAmount=function (Product) {
         Product.amount= Product.amount+1;
-        localStorageService.set(Product.ID, Product)
+        localStorageService.set(Product.ID, Product);
         self.totalAmount=self.totalAmount+Product.price;
-
     };
     self.decreaseAmount=function (Product) {
         if( Product.amount!=0) {
             Product.amount = Product.amount - 1;
-            localStorageService.set(Product.ID, Product)
+            localStorageService.set(Product.ID, Product);
             self.totalAmount=self.totalAmount-Product.price;
         }
     };
@@ -247,11 +243,11 @@ app.controller('cartCtrl', ['$http','localStorageService','$window', function($h
     self.ClearAll=function () {
         localStorageService.clearAll();
         self.Products=self.getProductsFromStorage();
-    }
+    };
     self.closeClickModal=function () {
         self.modalProduct=false;
         self.modalOrder=false;
-    }
+    };
     self.openModal=function (product) {
         self.modalProduct=true;
         self.modalPDescription=product.description;
@@ -259,14 +255,14 @@ app.controller('cartCtrl', ['$http','localStorageService','$window', function($h
         self.modalCategory=product.categoryName;
         self.modalPrice=product.price;
         self.modalImage=product.imagePath;
-    }
+    };
     self.openModalOrder=function (order) {
         self.modalOrder=true;
         self.modalOrderNo=order.OrderID;
         self.modalOrderDate=order.OrderDate.substring(0,10);
         self.modalShipmentDate=order.ShipmentDate.substring(0,10);
         self.modalTotalAmount=order.TotalAmount;
-    }
+    };
 }]);
 //----------------------------------------------------------------
 app.controller('registerCtrl', ['$http', function ($http) {

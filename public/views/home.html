@@ -6,14 +6,14 @@
         <div id="hotProducts_div">
             <span ng-show="!mainCtrl.show"><u>The hotest products this week...</u></span>
             <div  class="product_div" ng-repeat="Products in mainCtrl.productsToShow" >
-                <img src="{{Products.imagePath}}" width="120" height="120">
+                <img ng-src="{{Products.imagePath}}" width="120" height="120">
                 <p>{{Products.Description}}</p>
             </div>
         </div>
         <div id="newProducts_div" ng-show="mainCtrl.loggedIn">
             <span ng-show="!mainCtrl.show"><u>The newest products this month...</u></span>
             <div  class="product_div" ng-repeat="Products in mainCtrl.newProducts" >
-                <img src="{{Products.imagePath}}" width="120" height="120">
+                <img ng-src="{{Products.imagePath}}" width="120" height="120">
                 <p>{{Products.Description}}</p>
             </div>
         </div>

@@ -78,7 +78,7 @@ app.get('/getUsersQuestions/:UserName', function (req, res, next) {
             next(err);
         });
 });
-app.post('/restorePasword', function (req, res, next) {
+app.post('/restorePassword', function (req, res, next) {
     var qIDs = req.body.QuestionID;
     var answers = req.body.Answers;
     var userName = req.body.UserName;

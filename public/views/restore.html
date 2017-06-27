@@ -2,15 +2,15 @@
 <div ng-controller="restoreCtrl as restoreCtrl" data-ng-init="restoreCtrl.init()">
     <label>{{restoreCtrl.Questions[0].Description}}</label>
     <br>
-    <input name="restoreCtrl.ans1">
+    <input ng-model="restoreCtrl.ans1">
     <br>
     <br>
     <label>{{restoreCtrl.Questions[1].Description}}</label>
     <br>
-    <input name="restoreCtrl.ans2">
+    <input ng-model="restoreCtrl.ans2">
     <br>
     <br>
-    <button ng-click="restoreCtrl.restorePass()"> restore </button>
+    <button id="restoreButton" ng-click="restoreCtrl.restorePass()"> restore </button>
     <br>
     <br>
     <label>{{restoreCtrl.returnAns}}</label>

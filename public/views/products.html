@@ -41,7 +41,7 @@
                     <td>{{Products.CategoryName}}</td>
                     <td>{{Products.BrandName}}</td>
                     <td>{{Products.Price}} ₪</td>
-                    <td><img src="{{Products.imagePath}}" width="120" height="120"></td>
+                    <td><img ng-src="{{Products.imagePath}}" width="120" height="120"></td>
                     <td><button ng-show="productsCtrl.loggedIn" ng-click="productsCtrl.addProductToCart(Products);">add to cart</button></td>
                 </tr>
             </table>
@@ -60,7 +60,7 @@
                         orderBy:productsCtrl.fieldToOrderBy:productsCtrl.reverseSort" witdh="30" height="20">
                     <td>{{Products.Description}}</td>
                     <td>{{Products.Price}} ₪</td>
-                    <td><img src="{{Products.imagePath}}" width="120" height="120"></td>
+                    <td><img ng-src="{{Products.imagePath}}" width="120" height="120"></td>
                     <td><button ng-click="productsCtrl.addProductToCart(Products);">add to cart</button></td>
                 </tr>
             </table>
