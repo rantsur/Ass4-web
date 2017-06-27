@@ -59,6 +59,8 @@ app.controller('restoreCtrl', ['$http', function ($http) {
     self.message;
     self.init = function () {
         self.emptyQuestions=true;
+        self.gotQuestions=false;
+        self.qotPass=false;
     };
 
     self.getQuestions = function () {
@@ -66,19 +68,23 @@ app.controller('restoreCtrl', ['$http', function ($http) {
         $http.get(self.url).then(function (response) {
             self.Questions = response.data;
             self.emptyQuestions=false;
+            self.gotQuestions=true;
         }, function (errResponse) {
             console.error('Error while fetching notes');
         });
     };
     self.restorePass = function() {
         var Indata = {
-            'UserName': 'ran',
+            'UserName': self.userName,
             'QuestionID':[self.Questions[0].QuestionID, self.Questions[1].QuestionID],
             'Answers':[self.ans1, self.ans2]
         };
         self.url = url+ "restorePassword";
         $http.post(self.url,JSON.stringify(Indata)).then(function(response) {
             self.message = response.data;
+            self.restoredPass = self.message[0].Password;
+            self.gotQuestions=false;
+            self.gotPass=true;
         }, function(errResponse) {
             console.error('Error while fetching notes');
         });

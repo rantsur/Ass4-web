@@ -8,7 +8,7 @@
     </div>
 
 
-    <div ng-hide="restoreCtrl.emptyQuestions">
+    <div ng-show="restoreCtrl.gotQuestions">
         <label>{{restoreCtrl.Questions[0].Description}}</label>
         <br>
         <input ng-model="restoreCtrl.ans1">
@@ -22,7 +22,12 @@
         <button id="restoreButton" ng-click="restoreCtrl.restorePass()"> restore </button>
         <br>
         <br>
-        <label>{{restoreCtrl.returnAns}}</label>
+    </div>
+
+    <div ng-show="restoreCtrl.gotPass">
+        Your Password is:
+        <br>
+        <label>{{restoreCtrl.restoredPass}}</label>
     </div>
 </div>
 </body>

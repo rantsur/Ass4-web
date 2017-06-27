@@ -88,7 +88,7 @@ app.post('/restorePassword', function (req, res, next) {
         'and ((QuestionID=\'' + qIDs[0] + '\' and Answer=\'' + answers[0] + '\') or (QuestionID=\'' + qIDs[1] + '\' and Answer=\'' + answers[1] + '\'))')
         .then(function (ans) {
             if (ans.length == 2) {
-                DButilsAzure.Select('select Password from Clients where UserName=\'' + req.cookies.shop.UserName + '\'')
+                DButilsAzure.Select('SELECT Password from Clients where UserName=\'' + userName + '\' ')
                     .then((ans) => res.send(ans))
                     .catch(function (err) {
                         next(err);
