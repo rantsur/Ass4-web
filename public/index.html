@@ -12,16 +12,14 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Indie Flower|Macondo">
 </head>
 <body>
-<header> <center><h2>My Shop</h2> </center></header>
+<div id="logo"> M&R Shop</div>
 
 <div ng-controller="mainController as mainCtrl">
     <div id="nav">
         <a ng-href="#/">Home</a> |
-        <a ng-href="#/register">Register</a> |
         <a ng-href="#/login">Login</a> |
         <a ng-href="#/products">Products</a> |
         <a ng-href="#/cart">cart</a> |
-        <a ng-href="#/StorageExample">Local-Storage</a>
     </div>
     <ng-view></ng-view>
 </div>

@@ -40,13 +40,10 @@
             <label>Credit card number</label>
             <input type="text" ng-model="registerCtrl.ccn" required/>
             <br>
-            <button id="registerButton" ng-click="registerCtrl.registerClick()">
-                Register
-            </button>
-        </form>
+
+
     </div>
     <div id="regOther">
-        <br>
         Question 1:
         <div>
             <select ng-model="registerCtrl.selectedQuestion"
@@ -64,13 +61,16 @@
             <br>
             <input type="text" ng-model="registerCtrl.ans2" placeholder="type your answer here" required/>
         </div>
-
-
         <br>
-        Preferences:
+        <center>Preferences:
+            <br>
         <div id="regCateg" ng-repeat="Categories in registerCtrl.Categories" track by Categories.CatrgoryID>
-            <label ng-bind="Categories.CategoryName"></label>
-            <input type="checkbox" name="myCheck" ng-model="Categories.CategoryID">
+            <center> <label ng-bind="Categories.CategoryName"></label>
+            <input type="checkbox" name="myCheck" ng-model="Categories.CategoryID"> </center>
         </div>
+        <center><button id="registerButton" ng-click="registerCtrl.registerClick()">
+            Register
+        </button> <center>
     </div>
+    </form>
 </div>
