@@ -61,14 +61,21 @@ app.controller('restoreCtrl', ['$http', function ($http) {
         self.emptyQuestions=true;
         self.gotQuestions=false;
         self.qotPass=false;
+        self.noUser = false;
     };
 
     self.getQuestions = function () {
         self.url = url + "getUsersQuestions/"+self.userName;
         $http.get(self.url).then(function (response) {
             self.Questions = response.data;
-            self.emptyQuestions=false;
-            self.gotQuestions=true;
+            if(self.Questions.length<1) {
+                self.noUser = true;
+                self.nsu = "No Such User Exist"
+            }
+            else {
+                self.gotQuestions = true;
+            }
+            self.emptyQuestions = false;
         }, function (errResponse) {
             console.error('Error while fetching notes');
         });
@@ -83,6 +90,8 @@ app.controller('restoreCtrl', ['$http', function ($http) {
         $http.post(self.url,JSON.stringify(Indata)).then(function(response) {
             self.message = response.data;
             self.restoredPass = self.message[0].Password;
+            if (self.restoredPass==null)
+                self.restoredPass = "At list one of the answers are wrong"
             self.gotQuestions=false;
             self.gotPass=true;
         }, function(errResponse) {
