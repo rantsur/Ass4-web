@@ -11,8 +11,8 @@ app.controller('mainController', ['$http','CookiesService', function ($http,Cook
     self.temp=[];
     self.show=true;
     self.loggedIn=CookiesService.isCookie();
-    self.user=CookiesService.getCookie();
-    self.username=self.user.UserName;
+    // self.user=CookiesService.getCookie();
+    // self.username=self.user.UserName;
         self.newProducts=[];
     self.init = function () {
         self.url = url + "getTopXItems/5/7";
@@ -57,7 +57,10 @@ app.controller('loginCtrl', ['$http', function ($http) {
 app.controller('restoreCtrl', ['$http', function ($http) {
     var self = this;
     self.message;
-    self.emptyQuestions=false;
+    self.init = function () {
+        self.emptyQuestions=true;
+    };
+
     self.getQuestions = function () {
         self.url = url + "getUsersQuestions/"+self.userName;
         $http.get(self.url).then(function (response) {
