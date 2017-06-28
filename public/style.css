@@ -1,6 +1,7 @@
 body {
 	font-family: 'Indie Flower', cursive;
 	margin: 0;
+	/*font:normal 12px/1.6em Arial, Helvetica, sans-serif;*/
 }
 #logo {
 	padding-left: 220px;
@@ -19,6 +20,7 @@ body {
 	vertical-align: middle;
 	background-color: black;
 	font-size: 20px;
+	z-index: 99999;
 }
 #nav a {
 	margin: 0 10px;
