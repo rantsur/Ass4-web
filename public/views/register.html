@@ -3,25 +3,41 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Indie Flower|Macondo">
 </head>
 <div id="mainRegDiv" data-ng-controller="registerCtrl as registerCtrl" data-ng-init="registerCtrl.init()">
-    <div id="Register">
-        <form name="regForm">
+    <form name="regForm" ng-submit="registerCtrl.registerClick()" novalidate>
+        <div id="Register">
             <label>User Name</label>
-            <input type="text" ng-model="registerCtrl.userName" required minlength="3" maxlength="8" ng-pattern="/^[a-zA-Z\s]*$/"/>
+            <input type="text"
+                   name="userName"
+                   placeholder="userName"
+                   ng-model="registerCtrl.userName"
+                   required="true"
+                   minlength="3">
+                   <!--maxlength="8"-->
+                   <!--ng-pattern="/^[a-zA-Z\s]*$/"/>-->
+            <!--<div ng-messages='regForm.userName.$error' ng-if='(regForm.userName.$dirty || regForm.$submitted)&&regForm.userName.$error' role="alert">-->
+                <!--&lt;!&ndash;<div ng-message="required" class="some-message"> userName is required </div>&ndash;&gt;-->
+                <!--<div ng-message="minlength" class="some-message"> userName is contain at least 3 letters </div>-->
+            <!--</div>-->
+            <span ng-show="regForm.userName.$touched && regForm.userName.$invalid">The name is </span>
+            <!--<div ng-messages="regForm.userName.$error"-->
+                 <!--role="alert">-->
+                <!--<div ng-message="required" class="some-message"> userName is required </div>-->
+            <!--</div>-->
             <br>
             <label>Password</label>
-            <input type="password" ng-model="registerCtrl.password" required minlength="5" maxlength="10"/>
+            <input type="password" ng-model="registerCtrl.password" ng-required="true" minlength="5" maxlength="10"/>
             <br>
             <label>First Name</label>
-            <input type="text" ng-model="registerCtrl.fname" required/>
+            <input type="text" ng-model="registerCtrl.fname" ng-required="true"/>
             <br>
             <label>Last Name</label>
-            <input type="text" ng-model="registerCtrl.lname" required/>
+            <input type="text" ng-model="registerCtrl.lname" ng-required="true"/>
             <br>
             <label>Address</label>
-            <input type="text" ng-model="registerCtrl.Address" required/>
+            <input type="text" ng-model="registerCtrl.Address" ng-required="true"/>
             <br>
             <label>City</label>
-            <input type="text" ng-model="registerCtrl.City" required/>
+            <input type="text" ng-model="registerCtrl.City" ng-required="true"/>
             <br>
             <label>Country</label>
             <select ng-model="registerCtrl.selectedCountry"
@@ -29,48 +45,46 @@
             </select>
             <br>
             <label>Phone</label>
-            <input type="text" ng-model="registerCtrl.Phone" required/>
+            <input type="text" ng-model="registerCtrl.Phone" ng-required="true"/>
             <br>
             <label>Cellular</label>
-            <input type="text" ng-model="registerCtrl.Cellular" required/>
+            <input type="text" ng-model="registerCtrl.Cellular" ng-required="true"/>
             <br>
             <label>Email</label>
-            <input type="email" ng-model="registerCtrl.mail" required/>
+            <input type="email" ng-model="registerCtrl.mail" ng-required="true"/>
             <br>
             <label>Credit card number</label>
-            <input type="text" ng-model="registerCtrl.ccn" required/>
+            <input type="text" ng-model="registerCtrl.ccn" ng-required="true"/>
             <br>
-
-
-    </div>
-    <div id="regOther">
-        Question 1:
-        <div>
-            <select ng-model="registerCtrl.selectedQuestion"
-                    ng-options="q.Description for q in registerCtrl.Questions track by q.QuestionID">
-            </select>
-            <br>
-            <input type="text" ng-model="registerCtrl.ans1" placeholder="type your answer here" required/>
         </div>
+        <div id="regOther">
+            Question 1:
+            <div>
+                <select ng-model="registerCtrl.selectedQuestion"
+                        ng-options="q.Description for q in registerCtrl.Questions track by q.QuestionID">
+                </select>
+                <br>
+                <input type="text" ng-model="registerCtrl.ans1" placeholder="type your answer here" ng-required="true"/>
+            </div>
 
-        Question 2:
-        <div>
-            <select ng-model="registerCtrl.selectedQuestion2"
-                    ng-options="q2.Description for q2 in registerCtrl.Questions2 track by q2.QuestionID">
-            </select>
+            Question 2:
+            <div>
+                <select ng-model="registerCtrl.selectedQuestion2"
+                        ng-options="q2.Description for q2 in registerCtrl.Questions2 track by q2.QuestionID">
+                </select>
+                <br>
+                <input type="text" ng-model="registerCtrl.ans2" placeholder="type your answer here" ng-required="true"/>
+            </div>
             <br>
-            <input type="text" ng-model="registerCtrl.ans2" placeholder="type your answer here" required/>
+            <center>Preferences:
+                <br>
+                <div id="regCateg" ng-repeat="Categories in registerCtrl.Categories" track by Categories.CatrgoryID>
+                    <center> <label ng-bind="Categories.CategoryName"></label>
+                        <input type="checkbox" name="myCheck" ng-model="Categories.CategoryID"> </center>
+                </div>
+                <center><button id="registerButton" type="submit" ng-disabled="regForm.$invalid">
+                    Register
+                </button> <center>
         </div>
-        <br>
-        <center>Preferences:
-            <br>
-        <div id="regCateg" ng-repeat="Categories in registerCtrl.Categories" track by Categories.CatrgoryID>
-            <center> <label ng-bind="Categories.CategoryName"></label>
-            <input type="checkbox" name="myCheck" ng-model="Categories.CategoryID"> </center>
-        </div>
-        <center><button id="registerButton" ng-click="registerCtrl.registerClick()">
-            Register
-        </button> <center>
-    </div>
     </form>
 </div>

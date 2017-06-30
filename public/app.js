@@ -39,7 +39,7 @@ app.controller('mainController', ['$http','CookiesService', function ($http,Cook
     }
 }]);
 //-------------------------------------------------------------------------------------------------------------------
-app.controller('loginCtrl', ['$http', function ($http) {
+app.controller('loginCtrl', ['$http', '$window', function ($http, $window) {
     var self = this;
     self.login = function() {
         var Indata = {'UserName': self.UserName, 'Password': self.Password };
@@ -47,7 +47,7 @@ app.controller('loginCtrl', ['$http', function ($http) {
         $http.post(self.url,JSON.stringify(Indata)).then(function(response) {
             if(response.data.localeCompare("logged in successfully!")==0) {
                 alert("Welcome Back!");
-                window.location.href = "http://localhost:5000/#/home";
+                $window.location.href = "/";
             }
             else {
                 alert(response.data);
@@ -291,7 +291,7 @@ app.controller('cartCtrl', ['$http','localStorageService','$window', function($h
     };
 }]);
 //----------------------------------------------------------------
-app.controller('registerCtrl', ['$http', function ($http) {
+app.controller('registerCtrl', ['$http', '$window', function ($http, $window) {
     var self = this;
     var Categories = [];
     var Questions = [];
@@ -371,7 +371,7 @@ app.controller('registerCtrl', ['$http', function ($http) {
         $http.post(self.url,JSON.stringify(Indata)).then(function(response) {
             self.message = response.data;
                 alert("Registration Complete");
-                $window.location.href = "http://localhost:5000/#/login";
+                $window.location.href = "/login";
         }, function(errResponse) {
             console.error('Error while fetching notes');
         });
