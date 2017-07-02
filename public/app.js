@@ -1,5 +1,5 @@
 let url = "http://localhost:5000/";
-let app = angular.module('myApp', ['ngRoute','ngCookies','LocalStorageModule']);
+let app = angular.module('myApp', ['ngRoute','ngCookies','ngMessages','LocalStorageModule']);
 //-------------------------------------------------------------------------------------------------------------------
 app.config(function (localStorageServiceProvider) {
     localStorageServiceProvider.setPrefix('node_angular_App');
@@ -291,7 +291,7 @@ app.controller('cartCtrl', ['$http','localStorageService','$window', function($h
     };
 }]);
 //----------------------------------------------------------------
-app.controller('registerCtrl', ['$http', '$window', function ($http, $window) {
+app.controller('registerCtrl', ['$http', '$window', '$location', function ($http, $window, $location) {
     var self = this;
     var Categories = [];
     var Questions = [];
@@ -371,10 +371,17 @@ app.controller('registerCtrl', ['$http', '$window', function ($http, $window) {
         $http.post(self.url,JSON.stringify(Indata)).then(function(response) {
             self.message = response.data;
                 alert("Registration Complete");
-                $window.location.href = "/login";
+                $location.path( "/login" );
         }, function(errResponse) {
             console.error('Error while fetching notes');
         });
+    };
+}]);
+//-------------------------------------------------------------------------------------------------------------------
+app.controller('aboutCtrl', ['$http', '$window', '$location', function ($http, $window, $location) {
+    var self = this;
+    self.closeAbout = function() {
+            $location.path( "/" );
     };
 }]);
 //-------------------------------------------------------------------------------------------------------------------
@@ -446,6 +453,10 @@ app.config(['$routeProvider', function ($routeProvider) {
         .when("/restore", {
             templateUrl : "views/restore.html",
             controller: 'restoreCtrl'
+        })
+        .when("/about", {
+            templateUrl : "views/about.html",
+            controller: 'aboutCtrl'
         })
         .otherwise({
             redirect: '/',
