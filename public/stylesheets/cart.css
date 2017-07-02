@@ -1,0 +1,25 @@
+.th{
+    width: 150px;
+}
+#cartDiv{
+    display: inline-block;
+    text-align: center;
+    padding-top: 35px;
+    line-height: 120%;
+    font-size: 17px;
+    margin-left: 200px;
+}
+#buttonsDiv{
+    float:right;
+    margin-top: 130px;
+    margin-right: 150px;
+    text-align: center;
+    font-size: 25px;
+    line-height: 120%;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+#pastOrders{
+    margin-top: 30px;
+    font-size: 20px;
+}
