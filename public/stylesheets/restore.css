@@ -1,0 +1,12 @@
+#getQ{
+    display: inline-block;
+    text-align: left;
+    padding-top: 100px;
+    line-height: 150%;
+    font-size: 20px;
+    margin-left: 450px;
+}
+#getPass{
+    padding-top: 70px;
+    text-align: center;
+}

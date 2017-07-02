@@ -1,0 +1,66 @@
+body {
+	font-family: 'Indie Flower', cursive;
+	margin: 0;
+	/*font:normal 12px/1.6em Arial, Helvetica, sans-serif;*/
+}
+#logo {
+	padding-left: 220px;
+	font-family: 'Lobster', cursive;
+	color:#f6dde3;
+	text-shadow: 4px 4px 4px #aaa;
+	font-size: 28px;
+	text-align: left;
+}
+#nav {
+	/*padding:2px;*/
+	color:#f6dde3;
+	text-align: center;
+	position: fixed;
+	width: 100%;
+	vertical-align: middle;
+	background-color: black;
+	font-size: 20px;
+	z-index: 99999;
+}
+#nav a {
+	margin: 0 10px;
+}
+#nav a:visited, #nav a:link {
+	text-decoration:none;
+	color:#f6dde3;
+}
+#nav a:hover {
+	text-decoration:underline;
+	color:#f6dde3;
+}
+#loading{
+	display: inline-block;
+	text-align: center;
+	padding-top: 100px;
+	line-height: 140%;
+	font-size: 30px;
+	margin-left: 600px;
+}
+input {
+	text-align: center;
+	font-size: 15px;
+	margin: 10px;
+	font-family: 'Macondo', cursive;
+	font-weight: bold;
+}
+#hotProducts_div{
+	display: inline-block;
+	text-align: center;
+	padding-top: 90px;
+	line-height: 120%;
+	font-size: 17px;
+	margin-left: 300px;
+}
+#newProducts_div{
+	float:right;
+	margin-top: 90px;
+	margin-right: 300px;
+	text-align: center;
+	font-size: 17px;
+	line-height: 120%;
+}

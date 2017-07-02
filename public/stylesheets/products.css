@@ -1,0 +1,19 @@
+.th{
+    width: 150px;
+}
+#leftProducts{
+    display: inline-block;
+    text-align: center;
+    padding-top: 25px;
+    line-height: 120%;
+    font-size: 17px;
+    margin-left: 100px;
+}
+#rightProducts{
+    float:right;
+    margin-top: 80px;
+    margin-right: 100px;
+    text-align: center;
+    font-size: 17px;
+    line-height: 120%;
+}
