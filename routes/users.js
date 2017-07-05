@@ -78,6 +78,14 @@ function updateStockAfterPurchase(req) {
     query = query + ")"
     return DButilsAzure.Insert(query);
 }
+function checkCookie(req) {
+    if (req.cookies != null && req.cookies.shop) {
+        return true;
+    }
+    else false;
+}
+
+module.exports = router;
 
 // router.get('/getRecommendedProductsForUser',function (req,res,next) {
 //     DButilsAzure.Select('SELECT Products.ProductID, Products.CategoryID, Products.Description ' +
@@ -88,13 +96,3 @@ function updateStockAfterPurchase(req) {
 //             next(err);
 //         });
 // });
-
-
-function checkCookie(req) {
-    if (req.cookies != null && req.cookies.shop) {
-        return true;
-    }
-    else false;
-}
-
-module.exports = router;

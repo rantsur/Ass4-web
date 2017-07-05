@@ -1,5 +1,3 @@
-//this is only an example, handling everything is yours responsibilty !
-
 var TYPES = require('tedious').TYPES;
 var Connection = require('tedious').Connection;
 var Request = require('tedious').Request;
