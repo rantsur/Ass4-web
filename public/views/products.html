@@ -3,26 +3,7 @@
     <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Indie Flower|Macondo">
 </head>
 <div ng-controller="productsCtrl as productsCtrl" data-ng-init="productsCtrl.init()">
-    <div id="buttons_div">
-        <button ng-click="productsCtrl.getProducts()">
-            all
-        </button>
-        <button ng-click="productsCtrl.getDresses()">
-            dresses
-        </button>
-        <button ng-click="productsCtrl.getShirts()">
-            shirts
-        </button>
-        <button ng-click="productsCtrl.getTrousers()">
-            trousers
-        </button>
-        <button ng-click="productsCtrl.getSkirts()">
-            skirts
-        </button>
-        <button ng-click="productsCtrl.getUnderwear()">
-            underwear
-        </button>
-    </div>
+
     <BR>
     <div id="main_div">
         <div id="loading" ng-show="productsCtrl.show">
@@ -31,9 +12,30 @@
         </div>
         <div id="leftProducts">
             <table>
-                <p><input placeholder="Search" type="text" ng-model="search"></p>
+                <p ng-show="!productsCtrl.show"><input placeholder="Search" type="text" ng-model="search"></p>
+                <div id="buttons_div" ng-show="!productsCtrl.show">
+                    <button ng-click="productsCtrl.getProducts()">
+                        all
+                    </button>
+                    <button ng-click="productsCtrl.getDresses()">
+                        dresses
+                    </button>
+                    <button ng-click="productsCtrl.getShirts()">
+                        shirts
+                    </button>
+                    <button ng-click="productsCtrl.getTrousers()">
+                        trousers
+                    </button>
+                    <button ng-click="productsCtrl.getSkirts()">
+                        skirts
+                    </button>
+                    <button ng-click="productsCtrl.getUnderwear()">
+                        underwear
+                    </button>
+                </div>
+                <br>
                 <thead>
-                <tr>
+                <tr ng-show="!productsCtrl.show">
                     <th ><a href=""  ng-click="productsCtrl.fieldToOrderBy='Description'; productsCtrl.reverseSort = !productsCtrl.reverseSort">Description</a></th>
                     <th><a href=""  ng-click="productsCtrl.fieldToOrderBy='Category'; productsCtrl.reverseSort = !productsCtrl.reverseSort">Category</a></th>
                     <th><a href=""  ng-click="productsCtrl.fieldToOrderBy='Brand'; productsCtrl.reverseSort = !productsCtrl.reverseSort">Brand</a></th>
@@ -53,10 +55,10 @@
             </table>
         </div>
         <div ng-show="productsCtrl.loggedIn" id="rightProducts">
-            <span>You may love:</span>
+            <span  id="title"ng-show="!productsCtrl.show">You may love:</span>
             <table>
                 <thead>
-                <tr>
+                <tr ng-show="!productsCtrl.show">
                     <th >Description</th>
                     <th>Price</th>
                     <th>image</th>

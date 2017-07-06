@@ -171,7 +171,7 @@ app.controller('productsCtrl', ['$http','localStorageService','$window','Cookies
         self.productsToShow = [];
         var j=0;
         for(let i=0;i<this.Products.length;i++)
-            if (this.Products[i].CategoryID == 5) {
+            if (this.Products[i].CategoryName == "underwear") {
                 self.productsToShow[j] = this.Products[i];
                 j++;
             }
@@ -181,7 +181,7 @@ app.controller('productsCtrl', ['$http','localStorageService','$window','Cookies
         self.productsToShow = [];
         var j=0;
         for(let i=0;i<this.Products.length;i++)
-            if (this.Products[i].CategoryID == 4) {
+            if (this.Products[i].CategoryName == "skirts") {
                 self.productsToShow[j] = this.Products[i];
                 j++;
             }
@@ -191,7 +191,7 @@ app.controller('productsCtrl', ['$http','localStorageService','$window','Cookies
         self.productsToShow = [];
         var j=0;
         for(let i=0;i<this.Products.length;i++)
-            if (this.Products[i].CategoryID == 2) {
+            if (this.Products[i].CategoryName == "trousers") {
                 self.productsToShow[j] = this.Products[i];
                 j++;
             }
@@ -201,7 +201,7 @@ app.controller('productsCtrl', ['$http','localStorageService','$window','Cookies
         self.productsToShow = [];
         var j=0;
         for(let i=0;i<this.Products.length;i++)
-            if (this.Products[i].CategoryID == 1) {
+            if (this.Products[i].CategoryName == "shirts") {
                 self.productsToShow[j] = this.Products[i];
                 j++;
             }
@@ -211,7 +211,7 @@ app.controller('productsCtrl', ['$http','localStorageService','$window','Cookies
         self.productsToShow = [];
         var j=0;
         for(let i=0;i<this.Products.length;i++)
-            if (this.Products[i].CategoryID == 3) {
+            if (this.Products[i].CategoryName == "dresses") {
                 self.productsToShow[j] = this.Products[i];
                 j++;
             }

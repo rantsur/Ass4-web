@@ -1,7 +1,6 @@
 var TYPES = require('tedious').TYPES;
 var Connection = require('tedious').Connection;
 var Request = require('tedious').Request;
-
 var config = {
     userName: 'mortzu',
     password: 'Mokaka22',
@@ -9,7 +8,6 @@ var config = {
     options: {encrypt: true, database: 'ShopDB'}
 };
 var connection;
-
 //----------------------------------------------------------------------------------------------------------------------
 exports.Select = function (query) {
     return new Promise(function (resolve, reject) {
