@@ -8,6 +8,7 @@
     line-height: 120%;
     font-size: 17px;
     margin-left: 100px;
+    margin-top: 20px;
 }
 #rightProducts{
     float:right;
@@ -22,4 +23,5 @@
     font-size: 22px;
     font-weight: bold;
     margin-bottom: 40px;
+    padding: 10px;
 }
