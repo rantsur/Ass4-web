@@ -17,10 +17,15 @@
     <div id="nav">
         <div id="logo"> M&R Shop</div>
         <a ng-href="#/">Home</a> |
-        <a ng-href="#/login">Login</a> |
         <a ng-href="#/products">Products</a> |
-        <a ng-href="#/cart">cart</a> |
-        <a ng-href="#/about">about</a> |
+        <a ng-href="#/about">About</a> |
+        <a ng-show="mainCtrl.loggedIn" ng-href="#/cart">Cart  |</a>
+        <a ng-show="!mainCtrl.loggedIn" ng-href="#/login">Login</a>
+        <a ng-show="mainCtrl.loggedIn" ng-click="mainCtrl.logout()" ng-href="#/">Logout</a>
+    </div>
+    <div id="sayHello">
+        <div ng-if="mainCtrl.userInfo.userName">Hello, {{mainCtrl.userInfo.userName}}</div>
+        <div ng-if="mainCtrl.userInfo.lastVisited">,Last Visited: {{mainCtrl.userInfo.lastVisited}}</div>
     </div>
     <ng-view></ng-view>
 </div>

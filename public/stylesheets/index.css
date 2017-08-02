@@ -11,6 +11,18 @@ body {
 	font-size: 28px;
 	text-align: left;
 }
+#sayHello{
+    margin-left: 1100px;
+    color:#f6dde3;
+    text-align: center;
+    position: fixed;
+    vertical-align: middle;
+    background-color: black;
+    font-size: 16px;
+    z-index: 99999;
+    border:1px solid white;
+    margin-top: 10px;
+}
 #nav {
 	/*padding:2px;*/
 	color:#f6dde3;

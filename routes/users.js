@@ -42,6 +42,16 @@ router.get('/getRecommendedProductsForUser', function (req, res, next) {
             next(err);
         });
 });
+router.put('/updateLastVisited', function (req, res, next){
+    updateLastVisited(req).then(res.send("lastVisited update successfully")).catch(function (err) {
+        next(err);
+    });
+});
+function updateLastVisited(req) {
+    var UserName = req.body.UserName;
+    var query = "UPDATE Clients SET lastVisited=GETDATE() where UserName='"+UserName+"'";
+    return DButilsAzure.Insert(query);
+}
 function getLastOrderID() {
     var query = "select max(OrderID) as OrderID from Orders";
     return DButilsAzure.Select(query);

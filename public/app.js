@@ -1,19 +1,20 @@
 let url = "http://localhost:5000/";
 let app = angular.module('myApp', ['ngRoute','ngCookies','ngMessages','LocalStorageModule']);
+let loogedIn=false;
+
 //-------------------------------------------------------------------------------------------------------------------
 app.config(function (localStorageServiceProvider) {
     localStorageServiceProvider.setPrefix('node_angular_App');
 });
 //-------------------------------------------------------------------------------------------------------------------
-app.controller('mainController', ['$http','CookiesService', function ($http,CookiesService) {
+app.controller('mainController', ['$http','CookiesService','$cookies','localStorageService', function ($http,CookiesService,$cookies,localStorageService) {
     let self = this;
     self.productsToShow=[];
     self.temp=[];
     self.show=true;
     self.loggedIn=CookiesService.isCookie();
-    // self.user=CookiesService.getCookie();
-    // self.username=self.user.UserName;
-        self.newProducts=[];
+    self.userInfo=CookiesService.getCookie();
+    self.newProducts=[];
     self.init = function () {
         self.url = url + "getTopXItems/5/7";
         $http.get(self.url).then(function (response) {
@@ -36,6 +37,18 @@ app.controller('mainController', ['$http','CookiesService', function ($http,Cook
                 self.productsToShow=self.temp;
             }
         })
+    }
+    self.logout=function () {
+        var Indata = {'UserName': self.userInfo.userName};
+        alert("just check");
+        self.url = url+ "users/updateLastVisited";
+        $http.put(self.url,JSON.stringify(Indata)).then(function(response) {
+        }, function(errResponse) {
+            console.error('Error while fetching notes');
+        });
+        localStorageService.clearAll();
+        $cookies.remove('shop');
+        location.reload();
     }
 }]);
 //-------------------------------------------------------------------------------------------------------------------
@@ -96,7 +109,7 @@ app.controller('restoreCtrl', ['$http', function ($http) {
             self.message = response.data;
             self.restoredPass = self.message[0].Password;
             if (self.restoredPass==null)
-                self.restoredPass = "At list one of the answers are wrong"
+                self.restoredPass = "At least one of the answers are wrong"
             self.gotQuestions=false;
             self.gotPass=true;
         }, function(errResponse) {
@@ -105,7 +118,7 @@ app.controller('restoreCtrl', ['$http', function ($http) {
     };
 }]);
 //----------------------------------------------------------------
-app.controller('productsCtrl', ['$http','localStorageService','$window','CookiesService', function($http,localStorageService, $window,CookiesService) {
+app.controller('productsCtrl', ['$http','CookiesService','localStorageService','$window', function($http,CookiesService,localStorageService, $window) {
     var self = this;
     self.Products = [];
     self.productsToShow=[];
@@ -218,9 +231,10 @@ app.controller('productsCtrl', ['$http','localStorageService','$window','Cookies
     };
 }]);
 //-------------------------------------------------------------------------------------------------------------------
-app.controller('cartCtrl', ['$http','localStorageService','$window', function($http,localStorageService) {
+app.controller('cartCtrl', ['$http','localStorageService','CookiesService','$window', function($http,localStorageService,CookiesService) {
     var self = this;
     self.showOrders=false;
+    self.loggedIn=CookiesService.isCookie();
 
     self.viewOldOrders=function () {
         self.orders=[];
@@ -250,6 +264,9 @@ app.controller('cartCtrl', ['$http','localStorageService','$window', function($h
     };
 
     self.Products=self.getProductsFromStorage();
+    self.isEmpty=function () {
+        return self.Products.length==0;
+    }
     self.increaseAmount=function (Product) {
         Product.amount= Product.amount+1;
         localStorageService.set(Product.ID, Product);
@@ -384,46 +401,42 @@ app.controller('aboutCtrl', ['$http', '$window', '$location', function ($http, $
             $location.path( "/" );
     };
 }]);
+
 //-------------------------------------------------------------------------------------------------------------------
 //'ngCookies'
 app.factory('CookiesService', ['$cookies', function ($cookies) {
     let service = {};
+    service.cookie=null;
     service.getCookie =function () {
-        return $cookies.getObject('shop');
+        if(service.cookie==null)
+        {
+            let cookie= new Object();
+            cookie.userName= "guest";
+            cookie.lastVisited=null;
+            return cookie;
+        }
+        let cookieString= service.cookie;
+        let startUM= cookieString.indexOf("UserName")+8+3;
+        let startLV= cookieString.indexOf("LastVisited")+11+3;
+        let endUM=cookieString.indexOf('"',startUM);
+        let endLV=startLV+10;
+        let cookie= new Object();
+        cookie.userName=cookieString.substring(startUM,endUM);
+        cookie.lastVisited=cookieString.substring(startLV,endLV);
+        return cookie;
+
     };
     service.isCookie =function () {
-        // var pair = document.cookie.match(new RegExp(name + '=([^;]+)'));
-        // if(pair!=null)
-        //     return true;
-        // return false;
-        let cookie=$cookies.get('shop');
-        if(cookie!=null)
+
+        service.cookie=$cookies.get('shop');
+        if(service.cookie!=null)
             return true;
         return false;
     };
     return service;
 }]);
 //-------------------------------------------------------------------------------------------------------------------
-app.factory('UserService', ['$http', function ($http) {
-    let service = {};
-    service.isLoggedIn = false;
-    service.login = function (user) {
-        return $http.post('/login', user)
-            .then(function (response) {
-                let token = response.data;
-                $http.defaults.headers.common = {
-                    'my-Token': token,
-                    'user': user.username
-                };
-                service.isLoggedIn = true;
-                return Promise.resolve(response);
-            })
-            .catch(function (e) {
-                return Promise.reject(e);
-            });
-    };
-    return service;
-}]);
+
 //-------------------------------------------------------------------------------------------------------------------
 app.config(['$locationProvider', function ($locationProvider) {
     $locationProvider.hashPrefix('');
