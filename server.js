@@ -49,9 +49,11 @@ app.post('/login', function (req, res, next) {
     DButilsAzure.Select('SELECT * FROM Clients WHERE UserName=\'' + req.body.UserName + '\' AND Password=\'' + req.body.Password + '\'')
         .then(function (ans) {
             if (ans.length > 0) {
+                ans[0].LastVisitedProducts
                 var cookieInfo = new Object();
                 cookieInfo.UserName = req.body.UserName;
-                cookieInfo.LastVisited = new Date();
+                cookieInfo.LastVisited =ans[0].lastVisited;
+                // new Date();
                 res.cookie('shop', cookieInfo).send("logged in successfully!");
             }
             else {
