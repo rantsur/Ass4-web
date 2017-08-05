@@ -60,6 +60,7 @@ app.controller('registerCtrl', ['$http', '$window', '$location', function ($http
                 checkboxesChecked.push(i+1);
             }
         }
+        var day = self.getD();
         var Indata =
             {'UserName': self.userName,
                 'Password': self.password,
@@ -73,6 +74,7 @@ app.controller('registerCtrl', ['$http', '$window', '$location', function ($http
                 'Mail': self.mail,
                 'CreditCardNumber': self.ccn,
                 'isAdmin':'0',
+                'lastVisited' : day ,
                 'answers':[self.ans1, self.ans2],
                 'questions':[self.selectedQuestion.QuestionID,self.selectedQuestion2.QuestionID],
                 'categories': checkboxesChecked
@@ -86,4 +88,22 @@ app.controller('registerCtrl', ['$http', '$window', '$location', function ($http
             console.error('Error while fetching notes');
         });
     };
+
+    self.getD = function () {
+        var today = new Date();
+        var dd = today.getDate();
+        var mm = today.getMonth()+1; //January is 0!
+        var yyyy = today.getFullYear();
+
+        if(dd<10) {
+            dd = '0'+dd
+        }
+
+        if(mm<10) {
+            mm = '0'+mm
+        }
+
+        today = yyyy+'-'+mm+'-'+dd;
+        return today;
+    }
 }]);

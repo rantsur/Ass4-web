@@ -181,7 +181,8 @@ function insertNewClient(req) {
     var Mail = req.body.Mail;
     var CreditCardNumber = req.body.CreditCardNumber;
     var isAdmin = req.body.isAdmin;
-    let query = "INSERT INTO Clients (UserName,Password,FirstName,LastName,Address,City,Country,Phone,Cellular,Mail,CreditCardNumber,isAdmin) VALUES ('" + UserName + "','" + Password + "','" + FirstName + "','" + LastName + "','" + Address + "','" + City + "','" + Country + "','" + Phone + "','" + Cellular + "','" + Mail + "','" + CreditCardNumber + "','" + isAdmin + "')";
+    var lastVisited = req.body.lastVisited;
+    let query = "INSERT INTO Clients (UserName,Password,FirstName,LastName,Address,City,Country,Phone,Cellular,Mail,CreditCardNumber,isAdmin, lastVisited) VALUES ('" + UserName + "','" + Password + "','" + FirstName + "','" + LastName + "','" + Address + "','" + City + "','" + Country + "','" + Phone + "','" + Cellular + "','" + Mail + "','" + CreditCardNumber + "','" + isAdmin + "','" + lastVisited + "')";
     return DButilsAzure.Insert(query);
 }
 
