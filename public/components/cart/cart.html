@@ -1,6 +1,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="modalStyle.css"/>
     <link rel="stylesheet" type="text/css" href="components/cart/cart.css"/>
+    <link rel="stylesheet" type="text/css" href="components/cart/modalStyle.css"/>
 </head>
 
 <div ng-controller="cartCtrl as cartCtrl">
@@ -25,14 +26,6 @@
                 <td>{{Products.price*Products.amount}} ₪</td>
                 <td><button ng-click="cartCtrl.DeleteItem(Products)">remove</button></td>
             </tr>
-            <!--<tr witdh="30" height="20">-->
-                <!--<td></td>-->
-                <!--<td></td>-->
-                <!--<td> </td>-->
-                <!--<td><b>Total Amount</b></td>-->
-                <!--<td> {{cartCtrl.totalAmount}} ₪</td>-->
-                <!--<td></td>-->
-            <!--</tr>-->
         </table>
     </div>
     <div id ="buttonsDiv">
