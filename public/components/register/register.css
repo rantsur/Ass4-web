@@ -1,0 +1,21 @@
+#Register{
+    display: inline-block;
+    text-align: right;
+    padding-top: 85px;
+    line-height: 140%;
+    font-size: 17px;
+    margin-left: 250px;
+}
+#registerButton{
+    width: 120px;
+    height: 25px;
+    margin-top: 40px;
+}
+#regOther{
+    float:right;
+    margin-top: 85px;
+    margin-right: 250px;
+    text-align: left;
+    font-size: 17px;
+    line-height: 120%;
+}
